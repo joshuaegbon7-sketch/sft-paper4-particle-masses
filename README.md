@@ -1,5 +1,16 @@
 # Spacefield Transformation IV: Particle Masses from Primitive Closure Invariants
 
+## Citation
+
+This repository is archived on Zenodo:
+
+DOI: https://doi.org/10.5281/zenodo.20664031
+
+Citation:
+
+Egbon, J. (2026). *Spacefield Transformation IV: Particle Masses from Primitive Closure Invariants* (v1.0.1). Zenodo. https://doi.org/10.5281/zenodo.20664031
+
+
 This repository accompanies:
 
 **Joshua Egbon, _Spacefield Transformation IV: Spectral Closure Determinants and the Geometric Origin of Particle Masses_**.
