@@ -1,0 +1,7459 @@
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,amsfonts,mathtools}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor=blue,
+citecolor=blue,
+urlcolor=blue
+}
+
+\usepackage[numbers,sort&compress]{natbib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% THEOREMS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%% COMMANDS %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\SFT}{\mathrm{SFT}}
+\newcommand{\UCZ}{\mathrm{UCZ}}
+
+\newcommand{\Rc}{R_c}
+\newcommand{\Mm}{M_m}
+
+\newcommand{\Hs}{H(T)}
+
+\newcommand{\Lint}{\mathcal{L}_{\mathrm{int}}}
+
+\newcommand{\Oop}{\mathcal{O}}
+\newcommand{\Hop}{\mathcal{H}}
+
+\newcommand{\eig}[1]{\lambda_{#1}}
+
+
+\title{Spacefield Transformation IV: Spectral Closure Determinants and the Geometric Origin of Particle Masses}
+\author{Joshua Egbon}
+\date{June 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+The Standard Model successfully describes the known elementary
+particles but does not provide a first-principles derivation of
+their masses. Particle masses instead enter through independent
+Yukawa parameters whose numerical values are determined
+experimentally. In this work we develop a geometric mass
+construction within the Spacefield Transformation (SFT)
+framework, deriving particle masses from closure-selected
+spectral sectors of a finite confinement geometry.
+
+Starting from the Universal Confinement Zone established in SFT
+Paper I, we identify three primitive geometric invariants
+
+\[
+\chi_M=2,
+\qquad
+\chi_A=3,
+\qquad
+\chi_B=4,
+\]
+
+which generate the primitive closure kernel
+
+\[
+\mathcal K =
+\operatorname{diag}(2,3,4).
+\]
+
+Together with a universal surface normalization scale
+
+\[
+M_{\rm surf} =
+27.29~{\rm MeV},
+\]
+
+these invariants define a spectral closure determinant mass
+theorem through which projected closure sectors generate
+particle masses without introducing particle-specific mass
+parameters.
+
+The resulting framework produces the charged-lepton spectrum,
+the quark spectrum, and the neutral particle spectrum from a
+common geometric closure structure. The charged-lepton
+generation hierarchy, quark closure sectors, and neutral
+closure eigenstates emerge as distinct projections of the same
+primitive kernel.
+
+For the active neutrino sector, the framework predicts a normal
+hierarchy with
+
+\[
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV},
+\]
+
+corresponding to
+
+\[
+\Sigma m_\nu =
+0.063~{\rm eV}.
+\]
+
+The theory further predicts a hidden neutral closure excitation
+near \(5.24~{\rm GeV}\), a higher neutral closure tower, the
+absence of a fourth charged generation, and characteristic
+closure-transition corrections in the strange-quark sector.
+These predictions provide direct opportunities for future
+experimental tests of the closure-determinant framework.
+
+\end{abstract}
+
+
+\tableofcontents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{List of Symbols and Definitions}
+\phantomsection
+\label{sec:symbols_paper4}
+
+\renewcommand{\arraystretch}{1.15}
+
+\begin{longtable}{p{0.22\textwidth}p{0.72\textwidth}}
+
+\hline
+\textbf{Symbol} & \textbf{Definition / Meaning / Units} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Symbol} & \textbf{Definition / Meaning / Units} \\
+\hline
+\endhead
+
+\hline
+\endfoot
+
+\multicolumn{2}{c}{\textbf{1. SFT Geometric and Cosmological Quantities}} \\
+\hline
+
+$c$ & Speed of light. \\
+
+$G$ & Newton gravitational constant. \\
+
+$\hbar$ & Reduced Planck constant. \\
+
+$\ell_P$ & Planck length, $\ell_P=\sqrt{\hbar G/c^3}$. \\
+
+$M_m$ & Total confined matter mass of the Universal Confinement Zone (UCZ). \\
+
+$R_c$ & Universal Confinement Zone radius, defined by $R_c=2GM_m/c^2$. \\
+
+$A_{\rm sph}$ & Spherical confinement boundary area, $4\pi R_c^2$. \\
+
+$A_{\rm proj}$ & Projected confinement area, $\pi R_c^2$. \\
+
+$A_{\rm excl}$ & Excluded confinement area, $A_{\rm sph}-A_{\rm proj}$. \\
+
+$\Omega$ & Confinement domain. \\
+
+$\partial\Omega$ & Boundary of the confinement domain. \\
+
+$\gamma$ & Boundary localization exponent, $\gamma=\dim(\partial\Omega)/\dim(\Omega)=2/3$. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{2. Primitive Closure Invariants}} \\
+\hline
+
+$\chi_M$ & Mass-partition invariant, $\chi_M=M_{\rm lost}/M_{\rm confined}=2$. \\
+
+$\chi_A$ & Excluded-to-projected area invariant, $\chi_A=A_{\rm excl}/A_{\rm proj}=3$. \\
+
+$\chi_B$ & Spherical-to-projected area invariant, $\chi_B=A_{\rm sph}/A_{\rm proj}=4$. \\
+
+$M_{\rm confined}$ & Confined matter component of the UCZ. \\
+
+$M_{\rm lost}$ & Complementary non-confined mass component. \\
+
+$M_{\rm surf}$ & Universal surface mass scale, $M_{\rm surf}=\dfrac{\hbar c}{R_c}\left(\dfrac{R_c}{\ell_P}\right)^{2/3}$. \\
+
+$E_c$ & Inverse-radius confinement energy scale, $E_c=\hbar c/R_c$. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{3. Closure-Compatible Operator Framework}} \\
+\hline
+
+$\mathcal H$ & Closure-compatible Hilbert space. \\
+
+$\mathcal M$ & Compact confinement manifold. \\
+
+$d\mu_g$ & Geometric measure on $\mathcal M$. \\
+
+$\mathcal O$ & Closure-compatible self-adjoint operator. \\
+
+$D(\mathcal O)$ & Domain of the operator $\mathcal O$. \\
+
+$\lambda_i$ & Eigenvalue of $\mathcal O$. \\
+
+$\Psi_i$ & Eigenfunction corresponding to $\lambda_i$. \\
+
+$E_i$ & Eigenspace associated with $\lambda_i$. \\
+
+$P_{\rm cl}$ & Closure projection operator. \\
+
+$E_i^{\rm phys}$ & Closure-selected physical eigenspace. \\
+
+$\widetilde{\Lambda}_i$ & Dimensionless eigenvalue, $\widetilde{\Lambda}_i=R_c^2\lambda_i$. \\
+
+$d_i$ & Eigenspace multiplicity, $d_i=\dim(E_i)$. \\
+
+$r_i$ & Closure-surviving projection rank. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{4. Primitive Closure Kernel and Spectral Quantities}} \\
+\hline
+
+$\mathcal Q$ & Closure quotient space generated by the primitive invariants. \\
+
+$\mathcal B$ & Primitive closure basis $\{\chi_M,\chi_A,\chi_B\}$. \\
+
+$\mathcal K$ & Primitive closure kernel, $\mathcal K=\operatorname{diag}(2,3,4)$. \\
+
+$\operatorname{spec}(\mathcal K)$ & Spectrum of the primitive closure kernel. \\
+
+$\mathcal Q_M$ & Primitive mass-partition subspace. \\
+
+$\mathcal Q_A$ & Primitive excluded-area subspace. \\
+
+$\mathcal Q_B$ & Primitive spherical-area subspace. \\
+
+$\Pi_M$ & Projection onto $\mathcal Q_M$. \\
+
+$\Pi_A$ & Projection onto $\mathcal Q_A$. \\
+
+$\Pi_B$ & Projection onto $\mathcal Q_B$. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{5. Spectral Closure Determinant Theory}} \\
+\hline
+
+$\mathcal K_i$ & Projected closure kernel for particle sector $(i)$. \\
+
+$P_{\rm cl}^{(i)}$ & Closure projection associated with sector $(i)$. \\
+
+$\det{}'(\mathcal K_i)$ & Reduced non-zero spectral determinant of $\mathcal K_i$. \\
+
+$M_{\rm sector}$ & Sector normalization scale entering the mass theorem. \\
+
+$m_i$ & Physical particle mass. \\
+
+$\alpha_i$ & Multiplicity of primitive eigenvalue $2$. \\
+
+$\beta_i$ & Multiplicity of primitive eigenvalue $3$. \\
+
+$\gamma_i$ & Multiplicity of primitive eigenvalue $4$. \\
+
+$\operatorname{sgn}_M^{(i)}$ & Sign of mass-partition contribution. \\
+
+$\operatorname{sgn}_A^{(i)}$ & Sign of excluded-area contribution. \\
+
+$\operatorname{sgn}_B^{(i)}$ & Sign of spherical-area contribution. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{6. Generation Structure}} \\
+\hline
+
+$\mathcal G$ & Charged-generation space. \\
+
+$g_1,g_2,g_3$ & First, second and third generation basis states. \\
+
+$L_3$ & Three-node generation-chain Laplacian. \\
+
+$n_i$ & Generation excitation number. \\
+
+$n_e$ & Electron generation excitation number. \\
+
+$n_\mu$ & Muon generation excitation number. \\
+
+$n_\tau$ & Tau generation excitation number. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{7. Neutrino and Neutral Sector Quantities}} \\
+\hline
+
+$E_{\rm vac}$ & Neutral vacuum--curvature normalization scale. \\
+
+$m_{\nu_1}$ & First neutrino mass eigenstate. \\
+
+$m_{\nu_2}$ & Second neutrino mass eigenstate. \\
+
+$m_{\nu_3}$ & Third neutrino mass eigenstate. \\
+
+$\Sigma m_\nu$ & Sum of neutrino masses. \\
+
+$\Delta m_{21}^{2}$ & Solar mass-squared splitting. \\
+
+$\Delta m_{31}^{2}$ & Atmospheric mass-squared splitting. \\
+
+$\mathcal H_{\rm neutral}$ & Total neutral closure space. \\
+
+$\mathcal H_{\rm active}$ & Active neutrino sector. \\
+
+$\mathcal H_{\rm hidden}$ & Hidden neutral closure sector. \\
+
+$m_X$ & Lowest hidden neutral closure excitation. \\
+
+$N_k$ & Neutral closure tower level. \\
+
+\hline
+\multicolumn{2}{c}{\textbf{8. Predicted Neutral Closure Tower}} \\
+\hline
+
+$N_0$ & Ground neutral closure mode. \\
+
+$N_1$ & First retained neutral closure excitation. \\
+
+$N_2$ & Second retained neutral closure excitation. \\
+
+$N_3$ & Third retained neutral closure excitation. \\
+
+$N_4$ & Fourth retained neutral closure excitation. \\
+
+$N_5$ & Fifth retained neutral closure excitation. \\
+
+$\Lambda_N$ & Neutral closure eigenvalue associated with tower level $N$. \\
+
+\end{longtable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+One of the longstanding open problems in fundamental physics is
+the origin of particle masses. Although the Standard Model
+provides an exceptionally successful description of known
+particle interactions, it does not derive the observed particle
+masses from first principles. Instead, the fermion masses enter
+through independent Yukawa couplings whose numerical values must
+be determined experimentally \cite{Weinberg1995,Peskin1995}.
+Consequently, the origin of the particle mass hierarchy remains
+unexplained within the Standard Model itself.
+
+Numerous approaches have been proposed to address the particle
+mass problem. Within the Standard Model, the Higgs mechanism
+explains how elementary particles acquire mass through
+spontaneous electroweak symmetry breaking
+\cite{Higgs1964,Englert1964}. However, the numerical values of
+the Yukawa couplings remain external inputs whose origins are
+not explained by the theory itself
+\cite{Weinberg1995,Peskin1995}.
+
+Beyond the Standard Model, grand unified theories seek to
+relate particle properties through enlarged gauge symmetries
+\cite{Georgi1974}, while string-inspired constructions attempt
+to derive low-energy particle spectra from higher-dimensional
+geometric structures \cite{Green1987}. Likewise,
+flavour-symmetry approaches aim to explain the observed mass
+hierarchies through discrete or continuous symmetry groups
+\cite{King2013}.
+
+Spectral-geometric frameworks have explored the possibility
+that particle properties emerge from operator spectra defined
+on underlying geometric spaces \cite{Connes1994}. These
+approaches motivate the broader question of whether the
+observed particle masses may ultimately arise from geometric
+invariants rather than from independently specified particle
+parameters.
+
+Despite substantial progress, a predictive derivation of the
+observed particle spectrum from a small set of fundamental
+geometric principles remains an open challenge.
+
+The present work forms the fourth paper in the Spacefield
+Transformation (SFT) research programme.
+
+SFT Paper I established the geometric foundations of the
+Spacefield Transformation framework \cite{Egbon2025I}. Starting
+from a finite confinement geometry referred to as the Universal
+Confinement Zone (UCZ), the theory derived the universal matter
+content, confinement radius, and present-epoch cosmological
+parameters from first principles. The resulting framework
+provided a geometric description of cosmological closure and
+established the fundamental confinement structure upon which
+subsequent developments of SFT are based.
+
+SFT Paper II extended the framework to baryogenesis
+\cite{Egbon2025II}. Within the curvature--vacuum closure
+formalism, the observed matter--antimatter asymmetry was derived
+from geometric closure dynamics rather than from particle-sector
+asymmetry parameters. This construction linked baryon production
+directly to the underlying confinement geometry and yielded a
+geometric interpretation of the baryogenesis process.
+
+SFT Paper III applied the closure framework to primordial
+nucleosynthesis \cite{Egbon2025III}. Using the same confinement
+geometry, the theory derived neutron freeze-out behaviour and
+the resulting light-element abundances, providing a
+curvature-linked description of the neutron epoch and the
+formation of the primordial nuclear species.
+
+A natural question arising from these results is whether the
+same confinement geometry can determine the particle spectrum
+itself. The purpose of the present paper is to derive particle masses
+from closure-selected spectral sectors generated by the
+primitive geometric invariants of the Universal Confinement
+Zone.
+
+Rather than introducing particle masses as independent
+parameters, we assume that physically realized particle sectors
+correspond to closure-selected eigenspaces of a compact
+geometric operator defined on the Universal Confinement Zone.
+The particle spectrum is then generated by projected spectral
+determinants associated with these retained closure sectors.
+
+The construction begins with three primitive geometric
+invariants derived from the confinement geometry,
+
+\[
+\chi_M = 2,
+\qquad
+\chi_A = 3,
+\qquad
+\chi_B = 4,
+\]
+
+together with a universal surface normalization scale
+
+\[
+M_{\rm surf}
+=
+27.29~{\rm MeV}.
+\]
+
+These quantities determine a primitive closure kernel whose
+projected restrictions generate particle masses through a
+spectral closure determinant mass theorem. Within this
+framework, particle masses emerge from closure geometry rather
+than from particle-specific mass parameters.
+
+The principal results of the paper are:
+
+\begin{enumerate}
+
+\item derivation of a primitive closure kernel generated by the
+geometric invariants \(\{2,3,4\}\);
+
+\item formulation of a spectral closure determinant mass
+theorem relating projected closure sectors to physical masses;
+
+\item derivation of the universal surface normalization scale
+
+\[
+M_{\rm surf}
+=
+27.29~{\rm MeV};
+\]
+
+\item derivation of the charged-lepton spectrum from closure
+deficit and generation-chain structure;
+
+\item derivation of quark mass scales from colour-resolved
+closure sectors;
+
+\item derivation of the neutral vacuum--curvature
+normalization scale
+
+\[
+E_{\rm vac}
+\simeq
+2.25~{\rm meV},
+\]
+
+from the SFT closure--vacuum energy density;
+
+\item derivation of a normal neutrino hierarchy,
+
+\[
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV},
+\]
+
+together with
+
+\[
+\Sigma m_\nu =
+0.063~{\rm eV};
+\]
+
+\item prediction of a retained hidden neutral closure
+excitation
+
+\[
+m_X
+\simeq
+5.24~{\rm GeV};
+\]
+
+\item prediction of a higher neutral closure tower beyond the
+observed active neutrino sector.
+
+\end{enumerate}
+
+For convenience, consolidated summary tables of the primitive
+geometric quantities, particle spectra, neutrino observables,
+and higher neutral closure states are provided in
+Appendix~\ref{app:summary_tables}.
+
+The objective of the present work is not merely to reproduce
+known particle masses. Rather, the aim is to determine whether
+the observed particle spectrum can be derived from a finite set
+of geometric closure invariants without introducing
+particle-specific mass parameters. Within the Spacefield
+Transformation framework, particle masses are interpreted as
+spectral manifestations of an underlying geometric closure
+structure generated by the primitive confinement invariants of
+the Universal Confinement Zone.
+
+The remainder of the paper develops the closure-compatible
+operator framework, constructs the primitive closure kernel,
+derives the spectral closure determinant mass theorem, and
+applies the resulting formalism to the charged-lepton, quark,
+and neutral particle sectors.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{SFT Closure Geometry and Primitive Invariants}
+
+\subsection{Universal Confinement Geometry}
+\label{subsec:universal_confinement_geometry}
+
+The present work is built upon the confinement geometry established
+in SFT Paper~I \cite{Egbon2025I}. Within that framework, the
+observable universe is interpreted as a finite confinement domain,
+referred to as the Universal Confinement Zone (UCZ), possessing a
+characteristic confinement radius \(R_c\).
+
+The UCZ is defined through the geometric closure condition
+\begin{equation}
+\frac{2GM_m}{R_c c^2} = 1,
+\label{eq:ucz_closure_condition}
+\end{equation}
+where $(M_m)$ denotes the total confined matter content of the
+observable universe, (G) is Newton's gravitational constant,
+and (c) is the speed of light.
+
+Equation~\eqref{eq:ucz_closure_condition} may be written
+equivalently as
+\begin{equation}
+R_c = \frac{2GM_m}{c^2}.
+\label{eq:ucz_radius}
+\end{equation}
+
+This relation establishes a direct geometric connection between
+the total confined matter content and the global confinement
+radius.
+
+Using the SFT Paper~I baseline parameters,
+\begin{equation}
+M_m = 9.74014\times10^{53}\ {\rm kg},
+\end{equation}
+the corresponding confinement radius is
+\begin{equation}
+R_c = 1.4466\times10^{27}\ {\rm m}.
+\end{equation}
+
+The confinement radius plays a central role throughout the
+present work. It determines the characteristic geometric scale
+of the closure domain and serves as the fundamental length scale
+from which the particle-sector normalization structure is
+constructed.
+
+Unlike conventional particle-physics approaches, the present
+framework does not begin from microscopic particle masses.
+Instead, the particle sector is treated as emerging from the
+same finite confinement geometry that governs the global
+cosmological closure relations.
+
+Consequently, the quantities derived in the following sections
+are ultimately traced back to the confinement radius \(R_c\)
+and the associated closure geometry of the Universal
+Confinement Zone.
+
+The next step is to identify the primitive geometric invariants
+associated with the confinement domain. These invariants define
+the mass-partition and projected-area structures from which the
+spectral closure framework of the present paper is constructed.
+
+
+%%%%%%%%%%%%=============================================================================
+
+\subsection{Mass Partition Invariant}
+\label{subsec:mass_partition_invariant}
+
+A central result of SFT Paper~I is that the confinement geometry
+naturally induces a partition of the total closure mass into
+confined and non-confined contributions \cite{Egbon2025I}.
+
+Let \(M_m\) denote the total matter content associated with the
+Universal Confinement Zone. The closure geometry implies the
+existence of a confined component ($M_{\rm confined}$) and a
+complementary non-confined component ($M_{\rm lost}$), satisfying
+
+\begin{equation}
+M_m = M_{\rm confined} + M_{\rm lost}.
+\label{eq:mass_partition_total}
+\end{equation}
+
+Within the SFT confinement construction, the geometric closure
+relations yield the partition
+
+\begin{equation}
+M_{\rm confined} : M_{\rm lost} : M_m = 1 : 2 : 3.
+\label{eq:mass_partition_ratio}
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+M_{\rm confined} = \frac{1}{3}M_m,
+\qquad
+M_{\rm lost} = \frac{2}{3}M_m.
+\label{eq:mass_partition_fraction}
+\end{equation}
+
+The partition \eqref{eq:mass_partition_ratio} should be
+understood as a geometric closure invariant rather than as a
+phenomenological decomposition. It arises from the global
+confinement structure of the Universal Confinement Zone and is
+therefore fixed once the closure geometry is specified.
+
+For later use, it is convenient to introduce the associated
+dimensionless confinement ratio
+
+\begin{equation}
+\chi_M = \frac{M_{\rm lost}}
+{M_{\rm confined}} = 2.
+
+\label{eq:chi_mass}
+\end{equation}
+
+The quantity ($\chi_M$) represents the fundamental mass-partition
+ratio of the closure geometry. Unlike particle-sector mass
+ratios, it is independent of any specific particle species and
+depends only on the global confinement structure.
+
+Consequently, the value
+
+\begin{equation}
+\chi_M = 2
+\end{equation}
+
+may be regarded as a primitive geometric invariant of the SFT
+closure geometry.
+
+Together with the projected-area invariant derived in the next
+subsection, this confinement ratio forms one of the fundamental
+dimensionless quantities from which the spectral closure
+structure of the present paper is constructed.
+
+%%%%%%%==========================================================================
+
+\subsection{Projected-Area Invariant}
+\label{subsec:projected_area_invariant}
+
+In addition to the mass-partition structure discussed above,
+the confinement geometry possesses a second fundamental
+dimensionless invariant associated with the projected closure
+boundary.
+
+The Universal Confinement Zone is characterized by a spherical
+closure surface of radius \(R_c\). The corresponding spherical
+boundary area is
+
+\begin{equation}
+A_{\rm sph} = 4\pi R_c^2.
+\label{eq:Asph}
+\end{equation}
+
+The projected confinement surface is defined by the orthogonal
+projection of the closure boundary and has area
+
+\begin{equation}
+A_{\rm proj} = \pi R_c^2.
+\label{eq:Aproj}
+\end{equation}
+
+The portion of the closure boundary not contained within the
+projected confinement surface defines the excluded area
+
+\begin{equation}
+A_{\rm excl}
+=
+A_{\rm sph}
+-
+A_{\rm proj}.
+\label{eq:Aexcl_def}
+\end{equation}
+
+Substituting
+Eqs.~\eqref{eq:Asph} and \eqref{eq:Aproj} gives
+
+\begin{equation}
+A_{\rm excl}
+=
+4\pi R_c^2
+-
+\pi R_c^2
+=
+3\pi R_c^2.
+\label{eq:Aexcl}
+\end{equation}
+
+Consequently, the projected closure geometry possesses the
+dimensionless area partition
+
+\begin{equation}
+A_{\rm proj} : A_{\rm excl} : A_{\rm sph} = 1 : 3 : 4.
+\label{eq:area_partition}
+\end{equation}
+
+The ratios appearing in
+Eq.~\eqref{eq:area_partition} are independent of the numerical
+value of \(R_c\). They therefore represent geometric invariants
+of the projected closure structure rather than scale-dependent
+quantities.
+
+For later use, it is convenient to define two associated
+dimensionless closure ratios.
+
+The excluded-to-projected area ratio is
+
+\begin{equation}
+\chi_A = \frac{A_{\rm excl}}
+{A_{\rm proj}} = \frac{3\pi R_c^2}
+{\pi R_c^2} = 3,
+\label{eq:chiA}
+\end{equation}
+
+while the spherical-to-projected area ratio is
+
+\begin{equation}
+\chi_B = \frac{A_{\rm sph}}{A_{\rm proj}} = \frac{4\pi R_c^2}
+{\pi R_c^2} = 4.
+\label{eq:chiB}
+\end{equation}
+
+Thus the projected confinement geometry supplies two primitive
+dimensionless area invariants,
+
+\begin{equation}
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+Together with the mass-partition invariant
+
+\begin{equation}
+\chi_M=2,
+\end{equation}
+
+derived in the previous subsection, these quantities constitute
+the fundamental dimensionless ratios of the closure geometry.
+
+The significance of these invariants is that they are determined
+entirely by the confinement structure itself. No particle-sector
+data, spectral assumptions, or phenomenological mass inputs enter
+their derivation. They are therefore available as primitive
+geometric quantities from which more elaborate closure
+constructions may be developed in subsequent sections.
+
+%%%%%%===============================================================
+
+\subsection{Universal Surface Mass Scale}
+\label{subsec:universal_surface_mass_scale}
+
+The primitive geometric invariants derived above are dimensionless.
+To obtain physical particle masses, a dimensional normalization scale
+must be introduced.
+
+Within the SFT framework, the natural geometric length scale is the
+Universal Confinement Zone radius \(R_c\). The corresponding inverse-length
+quantum energy scale is
+
+\begin{equation}
+E_c = \frac{\hbar c}{R_c}.
+\label{eq:Ec}
+\end{equation}
+
+This represents the characteristic energy associated with a mode whose
+wavelength is of order \(R_c\).
+
+Since \(R_c\) is a cosmological length scale, the quantity \(E_c\) is
+extremely small and cannot by itself account for particle-scale masses.
+A second geometric scale is therefore required.
+
+The relevant microscopic length scale is the Planck length
+
+\begin{equation}
+\ell_P = \sqrt{\frac{\hbar G}{c^3}}.
+\label{eq:PlanckLength}
+\end{equation}
+
+The confinement geometry therefore contains the dimensionless hierarchy
+
+\begin{equation}
+\frac{R_c}{\ell_P},
+\label{eq:RcOverLp}
+\end{equation}
+
+which measures the separation between the cosmological confinement
+scale and the microscopic gravitational scale.
+
+The particle sectors considered in the present work are associated
+with projected confinement-boundary modes rather than volume-filling
+bulk modes.
+
+For a spherical confinement domain,
+
+\begin{equation}
+V(R) = \frac{4\pi}{3}R^3,
+\label{eq:VolumeSphere}
+\end{equation}
+
+while the corresponding boundary area is
+
+\begin{equation}
+A(R) = 4\pi R^2.
+\label{eq:AreaSphere}
+\end{equation}
+
+The confinement boundary therefore scales as \(R^2\), whereas the
+enclosed bulk scales as \(R^3\).
+
+Let \(\Omega\) denote the confinement domain and
+\(\partial\Omega\) its boundary. The corresponding geometric
+localization exponent is
+
+\begin{equation}
+\gamma =
+\frac{\dim(\partial\Omega)}
+{\dim(\Omega)}
+=
+\frac{2}{3}.
+\label{eq:BoundaryExponent}
+\end{equation}
+
+The exponent \(\gamma\) is a geometric invariant of the confinement
+manifold. It is determined entirely by the dimensional relationship
+between the confinement boundary and the enclosed bulk and therefore
+does not depend upon any particle-sector data.
+
+Within the present framework, the retained particle sectors are
+interpreted as boundary-localized closure modes rather than
+volume-filling bulk excitations. Consequently, the value
+\(\gamma=2/3\) is not introduced as a phenomenological parameter.
+Instead, it follows directly from the geometry of the confinement
+domain and characterizes the localization of particle-sector
+degrees of freedom on the confinement boundary.
+
+The corresponding boundary-localization amplification factor is
+
+\begin{equation}
+\left(
+\frac{R_c}{\ell_P}
+\right)^{\gamma}
+=
+\left(
+\frac{R_c}{\ell_P}
+\right)^{2/3}.
+\label{eq:BoundaryAmplification}
+\end{equation}
+
+This factor is fixed entirely by the confinement geometry. As a
+result, the surface normalization scale \(M_{\rm surf}\) depends
+only upon the confinement radius \(R_c\), the Planck length
+\(\ell_P\), and fundamental constants. It is determined before any
+particle-sector construction is introduced and is independent of
+the masses that it subsequently generates.
+
+Multiplying the inverse-radius quantum scale by the geometric
+amplification factor yields the universal surface mass scale
+
+\begin{equation}
+M_{\rm surf}
+=
+\frac{\hbar c}{R_c}
+\left(
+\frac{R_c}{\ell_P}
+\right)^{2/3}.
+\label{eq:Msurf}
+\end{equation}
+
+or equivalently,
+
+\begin{equation}
+M_{\rm surf}
+=
+\hbar c\,
+R_c^{-1/3}
+\ell_P^{-2/3}.
+\label{eq:MsurfEquivalent}
+\end{equation}
+
+Equation~\eqref{eq:Msurf} depends only upon the confinement
+radius \(R_c\), the Planck length \(\ell_P\), and fundamental
+constants. No particle masses enter its construction.
+
+Using
+
+\begin{equation}
+R_c = 1.4466\times10^{27}\ {\rm m},
+\end{equation}
+
+and
+
+\begin{equation}
+\ell_P = 1.6163\times10^{-35}\ {\rm m},
+\end{equation}
+
+gives
+
+\begin{equation}
+M_{\rm surf}
+=
+4.3729\times10^{-12}\ {\rm J}.
+\label{eq:MsurfJoules}
+\end{equation}
+
+Using
+
+\begin{equation}
+1\ {\rm MeV}
+=
+1.60218\times10^{-13}\ {\rm J},
+\end{equation}
+
+one obtains
+
+\begin{equation}
+M_{\rm surf}
+=
+27.29\ {\rm MeV}.
+\label{eq:MsurfNumerical}
+\end{equation}
+
+The quantity \(M_{\rm surf}\) will serve as the universal
+charged-sector normalization scale throughout the remainder of
+the paper.
+
+Collecting the results of the present section, the confinement
+geometry supplies the primitive invariants
+
+\begin{equation}
+\chi_M = 2,
+\qquad
+\chi_A = 3,
+\qquad
+\chi_B = 4,
+\end{equation}
+
+together with the universal surface mass scale
+
+\begin{equation}
+M_{\rm surf}
+=
+27.29\ {\rm MeV}.
+\end{equation}
+
+These quantities are determined entirely by the closure geometry
+and fundamental constants and do not depend upon particle-sector
+data. They therefore constitute the primitive geometric inputs
+for the spectral closure framework developed in the following
+sections.
+
+\begin{theorem}[Primitive Geometric Data]
+\label{thm:primitive_geometric_data}
+
+The confinement geometry of the Universal Confinement Zone
+supplies the primitive dimensionless invariants
+
+\begin{equation}
+\chi_M = 2, \qquad \chi_A = 3,
+\qquad \chi_B = 4,
+\end{equation}
+
+together with the universal surface mass scale
+
+\begin{equation}
+M_{\rm surf} = 27.29~{\rm MeV}.
+\end{equation}
+
+These quantities are determined entirely by the closure
+geometry and fundamental constants and do not depend upon
+particle-sector data.
+
+They therefore constitute the primitive geometric inputs for
+the closure-compatible spectral framework developed in the
+following sections.
+
+\end{theorem}
+
+A consolidated summary of the primitive geometric quantities
+derived in this section is provided in
+Appendix~\ref{app:summary_tables}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Closure-Compatible Operator Framework}
+
+The primitive geometric quantities derived in Section~2 provide
+the confinement scale and geometric invariants required for the
+spectral construction. We now introduce the operator framework
+used to describe closure-compatible particle sectors.
+
+The central hypothesis of the present work is that physically
+realized particle states correspond to closure-selected
+eigenspaces of a compact geometric operator defined on the
+Universal Confinement Zone (UCZ).
+
+Rather than assigning independent particle masses, the particle
+spectrum is assumed to emerge from the spectral structure of a
+single closure-compatible operator acting on an admissible
+Hilbert space.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Closure-Selected Eigenspaces}
+\label{subsec:closure_selected_eigenspaces}
+
+Let
+
+\begin{equation}
+\mathcal H =
+L^2(\mathcal M,d\mu_g)
+\end{equation}
+
+denote the closure-compatible Hilbert space associated with the
+compact confinement geometry introduced in SFT~I
+\cite{Egbon2025I}.
+
+Consider a self-adjoint operator
+
+\begin{equation}
+\mathcal O :
+D(\mathcal O)
+\subset
+\mathcal H
+\rightarrow
+\mathcal H,
+\end{equation}
+
+satisfying
+
+\begin{equation}
+\mathcal O^\dagger = 
+\mathcal O.
+\end{equation}
+
+The admissible spectral problem is
+
+\begin{equation}
+\mathcal O \Psi_i = 
+\lambda_i \Psi_i.
+\label{eq:spectral_problem}
+\end{equation}
+
+Because the confinement geometry is compact, the spectrum of
+\(\mathcal O\) is discrete and may be ordered as
+
+\begin{equation}
+\lambda_1
+<
+\lambda_2
+<
+\lambda_3
+<
+\cdots.
+\end{equation}
+
+Associated with each eigenvalue is an eigenspace
+
+\begin{equation}
+E_i = 
+\ker
+!\left(
+\mathcal O-\lambda_i I
+\right).
+\label{eq:eigenspace_definition}
+\end{equation}
+
+Not every mathematical eigenspace is assumed to correspond to a
+physical particle sector. The closure geometry imposes an
+additional selection condition represented by a closure
+projection
+
+\begin{equation}
+P_{\rm cl}.
+\end{equation}
+
+The physically admissible sector associated with \(E_i\) is
+therefore
+
+\begin{equation}
+E_i^{\rm phys} =
+P_{\rm cl} E_i.
+\label{eq:physical_eigenspace}
+\end{equation}
+
+Particle sectors are identified with these closure-selected
+eigenspaces rather than with arbitrary elements of the full
+operator spectrum.
+
+%%%%%%%======================================================
+
+\subsection{Projected Eigenspaces}
+\label{subsec:projected_eigenspaces}
+
+The closure projection introduced above provides a mechanism for
+distinguishing physically admissible sectors from the full
+mathematical spectrum.
+
+Let
+
+\begin{equation}
+P_{\rm cl}
+:
+\mathcal H
+\rightarrow
+\mathcal H
+\end{equation}
+
+denote the closure projection operator.
+
+For each eigenspace
+
+\begin{equation}
+E_i = 
+\ker
+!\left(
+\mathcal O-\lambda_i I
+\right),
+\end{equation}
+
+the corresponding closure-selected subspace is
+
+\begin{equation}
+E_i^{\rm phys} = P_{\rm cl}E_i.
+\end{equation}
+
+The projection removes modes that fail the global closure
+requirements imposed by the confinement geometry.
+
+Consequently, the physical particle sector is identified not
+with the full eigenspace \(E_i\), but with the projected sector
+
+\begin{equation}
+E_i^{\rm phys}.
+\end{equation}
+
+The resulting construction may be summarized schematically as
+
+\begin{equation}
+E_i
+\longrightarrow
+P_{\rm cl}E_i = E_i^{\rm phys}.
+\end{equation}
+
+The projection therefore acts as the bridge between the
+mathematical spectrum of \(\mathcal O\) and the physically
+admissible sectors of the theory.
+
+%%%%%%%%%=====================================================
+
+\subsection{Spectral Quantities}
+\label{subsec:spectral_quantities}
+
+The closure-selected sectors are characterized by three
+spectral quantities.
+
+The first is the dimensionless eigenvalue
+
+\begin{equation}
+\widetilde{\Lambda}_i = R_c^2\lambda_i,
+\label{eq:LambdaTilde}
+\end{equation}
+
+where \(R_c\) is the confinement radius derived in
+Section~2.
+
+The quantity \(\widetilde{\Lambda}_i\) provides a
+dimensionless measure of the spectral level associated with the
+(i)-th closure-selected sector.
+
+The second quantity is the eigenspace multiplicity
+
+\begin{equation}
+d_i = 
+\dim(E_i),
+\label{eq:di}
+\end{equation}
+
+which measures the dimension of the eigenspace associated with
+\(\lambda_i\).
+
+The third quantity is the closure-surviving projection rank
+
+\begin{equation}
+r_i =
+\operatorname{rank}
+!\left(
+P_{\rm cl}|_{E_i}
+\right),
+\label{eq:ri}
+\end{equation}
+
+which counts the number of independent modes that remain after
+closure projection.
+
+The triplet
+
+\begin{equation}
+\left(
+\widetilde{\Lambda}_i,
+d_i,
+r_i
+\right)
+\label{eq:spectral_triplet}
+\end{equation}
+
+therefore provides the minimal spectral data associated with a
+closure-selected sector.
+
+These quantities are inherited directly from the operator
+spectrum and do not depend upon particle-specific mass
+assignments.
+
+In the following sections they will be used to construct the
+primitive closure kernel and the corresponding spectral mass
+theorem.
+
+%%%%====================================================================
+
+\subsection{Minimal Closure-Compatible Operator}
+\label{subsec:minimal_closure_operator}
+
+The spectral construction developed in the present work does not
+require specification of a unique microscopic realization of the
+closure-compatible operator \(\mathcal O\).
+
+Instead, the construction requires only that \(\mathcal O\)
+
+\begin{enumerate}
+\item be self-adjoint;
+\item act on a finite-dimensional closure space;
+\item generate a well-defined closure quotient structure;
+\item possess a discrete spectrum.
+\end{enumerate}
+
+The role of the closure-compatible operator is to generate the
+primitive closure quotient structure. Once the quotient
+structure has been formed, the detailed microscopic realization
+of the operator is no longer relevant to the particle-sector
+construction.
+
+Consequently, the primitive kernel is an invariant of the
+closure quotient structure rather than of a particular
+microscopic operator realization.
+
+\begin{theorem}[Operator Independence of the Primitive Kernel]
+\label{thm:operator_independence_kernel}
+
+Let \(\mathcal O_1\) and \(\mathcal O_2\) be two
+closure-compatible self-adjoint operators acting on the same
+closure space.
+
+Suppose both operators generate the same primitive closure
+quotient structure.
+
+Then the induced primitive closure kernel is identical for both
+operators.
+
+\end{theorem}
+
+\begin{proof}
+
+The particle-sector construction is performed entirely on the
+closure quotient space rather than on the underlying operator
+representation.
+
+Let
+
+\begin{equation}
+\mathcal Q
+\end{equation}
+
+denote the primitive closure quotient structure generated by
+the closure-compatible operator.
+
+If \(\mathcal O_1\) and \(\mathcal O_2\) generate the same
+quotient structure \(\mathcal Q\), then the induced closure
+representation on \(\mathcal Q\) is identical for both
+operators.
+
+The primitive closure kernel is defined as the representation of
+the primitive closure directions on this quotient structure.
+
+Since the quotient structure is the same, the induced primitive
+kernel must also be the same.
+
+Therefore the primitive kernel depends only on the closure
+quotient structure and not on the detailed microscopic
+realization of the closure-compatible operator.
+
+\end{proof}
+
+The primitive quotient structure derived in the present work is
+generated by the three primitive closure directions associated
+with mass partition, colour multiplicity, and projected-area
+resolution.
+
+Its corresponding primitive kernel is therefore
+
+\begin{equation}
+\mathcal K =
+\operatorname{diag}(2,3,4).
+\end{equation}
+
+Thus the kernel used throughout the particle-sector
+construction is a property of the primitive closure quotient
+structure itself rather than of any particular microscopic
+operator realization.
+
+%%%%%%%%%%%%%======================================================
+
+\begin{proposition}[Existence of Closure-Compatible Representatives]
+\label{prop:existence_closure_operators}
+
+The primitive closure kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4)
+\end{equation}
+
+admits at least one self-adjoint realization on the primitive
+closure quotient space.
+
+Consequently, the class of closure-compatible spectral
+generators is non-empty.
+
+\end{proposition}
+
+\begin{proof}
+
+The matrix
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4)
+\end{equation}
+
+is real and diagonal.
+
+Therefore it is self-adjoint and possesses the real discrete
+spectrum
+
+\begin{equation}
+\{2,3,4\}.
+\end{equation}
+
+Its eigenspaces generate the primitive closure quotient
+structure associated with the invariants
+
+\begin{equation}
+\chi_M,
+\qquad
+\chi_A,
+\qquad
+\chi_B.
+\end{equation}
+
+Hence \(\mathcal K\) provides a self-adjoint representative of
+the closure-compatible operator class, demonstrating that the
+class is non-empty.
+
+\end{proof}
+
+\begin{remark}[Physical Interpretation]
+\label{rem:operator_interpretation}
+
+The closure-compatible operator serves only as a spectral
+generator of the primitive quotient structure.
+
+The physically relevant object for the particle-mass
+construction is the induced primitive closure kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+which depends only on the closure quotient structure and not on
+a particular microscopic realization of the operator.
+
+Consequently, any two closure-compatible operators that induce
+the same primitive quotient structure generate the same
+leading-order particle spectrum.
+
+\end{remark}
+
+The operator framework is therefore sufficient to define a
+well-posed closure quotient structure independent of any
+particular microscopic realization. We now construct the
+primitive closure kernel generated by the confinement
+invariants themselves.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Primitive Closure Kernel}
+\label{sec:primitive_closure_kernel}
+
+The previous sections established the primitive geometric data
+associated with the confinement geometry of the Universal
+Confinement Zone. In particular, the closure geometry supplies
+the dimensionless invariants
+
+\begin{equation}
+\chi_M = 2,
+\qquad
+\chi_A = 3,
+\qquad
+\chi_B = 4,
+\end{equation}
+
+derived respectively from the mass-partition and projected-area
+structures of the confinement domain \cite{Egbon2025I}.
+
+The purpose of the present section is to construct a primitive
+closure kernel whose spectrum is determined entirely by these
+geometric invariants.
+
+%%%%%%%================================================
+
+\subsection{Closure Quotient Space}
+\label{subsec:closure_quotient_space}
+
+The primitive invariants
+
+\begin{equation}
+\chi_M,
+\qquad
+\chi_A,
+\qquad
+\chi_B
+\end{equation}
+
+represent independent dimensionless quantities associated with
+the closure geometry.
+
+We therefore introduce the closure quotient space
+
+\begin{equation}
+\mathcal Q
+=
+\operatorname{span}
+\left\{
+\chi_M,
+\chi_A,
+\chi_B
+\right\}.
+\label{eq:closure_quotient_space}
+\end{equation}
+
+Since the three invariants arise from distinct geometric
+structures, they define a natural basis for \(\mathcal Q\).
+
+Accordingly, we adopt the ordered basis
+
+\begin{equation}
+\mathcal B
+=
+\left\{
+\chi_M,
+\chi_A,
+\chi_B
+\right\}.
+\label{eq:closure_basis}
+\end{equation}
+
+The closure quotient space therefore has dimension three,
+
+\begin{equation}
+\dim(\mathcal Q) = 3.
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Primitive Closure Ratios}
+\label{subsec:primitive_closure_ratios}
+
+Substituting the geometric invariants obtained in
+Section~2 yields
+
+\begin{equation}
+\chi_M =
+2,
+\end{equation}
+
+\begin{equation}
+\chi_A = 3,
+\end{equation}
+
+and
+
+\begin{equation}
+\chi_B = 4.
+\end{equation}
+
+The primitive closure basis therefore assumes the explicit form
+
+\begin{equation}
+\mathcal B = {2,3,4}.
+\label{eq:primitive_basis}
+\end{equation}
+
+These quantities are determined entirely by the confinement
+geometry and do not depend upon particle-sector information.
+
+Consequently, the set
+
+\begin{equation}
+{2,3,4}
+\end{equation}
+
+constitutes the primitive closure spectrum of the geometric
+invariants themselves.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Derivation of the Primitive Closure Kernel}
+\label{subsec:derivation_primitive_kernel}
+
+We now seek a linear operator acting on \(\mathcal Q\)
+whose eigenvalues reproduce the primitive closure ratios.
+
+Let
+
+\begin{equation}
+\mathcal K
+:
+\mathcal Q
+\rightarrow
+\mathcal Q
+\end{equation}
+
+denote the primitive closure kernel.
+
+In the basis \(\mathcal B\), each primitive invariant is
+required to remain an eigenvector of the kernel.
+
+Therefore
+
+\begin{equation}
+\mathcal K \chi_M = 2\chi_M,
+\end{equation}
+
+\begin{equation}
+\mathcal K \chi_A = 3\chi_A,
+\end{equation}
+
+and
+
+\begin{equation}
+\mathcal K \chi_B = 4\chi_B.
+\end{equation}
+
+The basis elements
+
+\begin{equation}
+\chi_M,
+\qquad
+\chi_A,
+\qquad
+\chi_B
+\end{equation}
+
+arise from distinct geometric structures of the closure
+construction.
+
+Specifically,
+
+\begin{itemize}
+\item \(\chi_M\) originates from the mass-partition invariant,
+\item \(\chi_A\) originates from the excluded-area invariant,
+\item \(\chi_B\) originates from the spherical-area invariant.
+\end{itemize}
+
+No primitive closure relation couples these invariants at the
+geometric level.
+
+Consequently, the closure quotient space admits a decomposition
+
+\begin{equation}
+\mathcal Q
+= \mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B,
+\label{eq:Qdecomposition}
+\end{equation}
+
+where each subspace is generated by a single primitive
+invariant.
+
+%%%%%%%%%=====================================================================
+
+\begin{proposition}[Primitive Invariant Preservation]
+\label{prop:primitive_invariant_preservation}
+
+Let
+
+\begin{equation}
+\mathcal Q
+=
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B
+\end{equation}
+
+be the primitive closure decomposition generated by the
+independent confinement invariants
+
+\begin{equation}
+\chi_M=2,
+\qquad
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+Then every closure-compatible primitive operator
+\(\mathcal K\) preserves each primitive invariant subspace.
+
+In particular,
+
+\begin{equation}
+\mathcal K(\mathcal Q_M)
+\subseteq
+\mathcal Q_M,
+\end{equation}
+
+\begin{equation}
+\mathcal K(\mathcal Q_A)
+\subseteq
+\mathcal Q_A,
+\end{equation}
+
+and
+
+\begin{equation}
+\mathcal K(\mathcal Q_B)
+\subseteq
+\mathcal Q_B.
+\end{equation}
+
+\end{proposition}
+
+\begin{proof}
+
+Because the primitive invariants arise from independent
+geometric partitions, the decomposition
+
+\begin{equation}
+\mathcal Q
+=
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B
+\end{equation}
+
+is a decomposition into geometrically distinct invariant
+directions.
+
+A closure-compatible primitive operator is required to measure
+closure content within these primitive directions without
+identifying one primitive invariant with another.
+
+Therefore no component of a vector in
+\(\mathcal Q_M\) may be mapped into
+\(\mathcal Q_A\) or \(\mathcal Q_B\), and similarly for the
+other primitive subspaces.
+
+Hence
+
+\begin{equation}
+\mathcal K(\mathcal Q_i)
+\subseteq
+\mathcal Q_i,
+\qquad
+i=M,A,B.
+\end{equation}
+
+\end{proof}
+
+%%%%%%%%================================================================
+
+\begin{theorem}[Uniqueness of the Primitive Closure Representation]
+\label{thm:primitive_closure_representation_uniqueness}
+
+Let the closure quotient space decompose into the three primitive
+invariant subspaces
+
+\begin{equation}
+\mathcal Q
+=
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B,
+\end{equation}
+
+where \(\mathcal Q_M\), \(\mathcal Q_A\), and \(\mathcal Q_B\)
+are generated respectively by the primitive closure invariants
+
+\begin{equation}
+\chi_M=2,
+\qquad
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+Suppose \(\mathcal K\) is a self-adjoint closure operator on
+\(\mathcal Q\) satisfying the following conditions:
+
+\begin{enumerate}
+\item \(\mathcal K\) preserves each primitive invariant subspace;
+\item each primitive invariant is an eigenvector of \(\mathcal K\);
+\item the corresponding eigenvalues are the primitive closure
+ratios \(2\), \(3\), and \(4\).
+\end{enumerate}
+
+Then, in the primitive closure basis
+
+\begin{equation}
+\mathcal B
+=
+\{\chi_M,\chi_A,\chi_B\},
+\end{equation}
+
+the closure operator is uniquely represented by
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4).
+\end{equation}
+
+Moreover, any self-adjoint closure operator satisfying the same
+conditions is unitarily equivalent to this diagonal
+representation.
+
+\end{theorem}
+
+\begin{proof}
+
+Since the primitive invariant subspaces are preserved by
+\(\mathcal K\), we have
+
+\begin{equation}
+\mathcal K(\mathcal Q_M)\subseteq \mathcal Q_M,
+\qquad
+\mathcal K(\mathcal Q_A)\subseteq \mathcal Q_A,
+\qquad
+\mathcal K(\mathcal Q_B)\subseteq \mathcal Q_B.
+\end{equation}
+
+Therefore \(\mathcal K\) cannot mix the primitive invariant
+directions. In the basis
+
+\begin{equation}
+\mathcal B
+=
+\{\chi_M,\chi_A,\chi_B\},
+\end{equation}
+
+all off-diagonal matrix elements must vanish.
+
+Since the primitive invariants are eigenvectors with eigenvalues
+
+\begin{equation}
+2,
+\qquad
+3,
+\qquad
+4,
+\end{equation}
+
+the action of \(\mathcal K\) is
+
+\begin{equation}
+\mathcal K\chi_M=2\chi_M,
+\qquad
+\mathcal K\chi_A=3\chi_A,
+\qquad
+\mathcal K\chi_B=4\chi_B.
+\end{equation}
+
+Hence the matrix representation of \(\mathcal K\) in the
+primitive closure basis is
+
+\begin{equation}
+\mathcal K
+=
+\begin{pmatrix}
+2 & 0 & 0\\
+0 & 3 & 0\\
+0 & 0 & 4
+\end{pmatrix}
+=
+\operatorname{diag}(2,3,4).
+\end{equation}
+
+Because \(\mathcal K\) is self-adjoint, any other orthonormal
+basis adapted to the same invariant decomposition is related to
+\(\mathcal B\) by a unitary change of basis. Therefore any
+self-adjoint closure operator satisfying the stated conditions
+is unitarily equivalent to
+\(\operatorname{diag}(2,3,4)\).
+
+\end{proof}
+
+%%%%%%%%%%=======================================================================
+
+\subsection{Primitive Spectrum}
+\label{subsec:primitive_spectrum}
+
+The eigenvalues of the primitive closure kernel follow
+from the geometric invariants established above.
+
+We may now determine the primitive spectrum.
+
+\begin{theorem}[Primitive Closure Spectrum]
+\label{thm:primitive_closure_spectrum}
+
+Let \(\mathcal K\) denote the primitive closure kernel acting
+on the closure quotient space (\mathcal Q).
+
+Then, by
+Proposition~\ref{prop:primitive_invariant_preservation}
+and
+Theorem~\ref{thm:primitive_closure_representation_uniqueness},
+the primitive closure kernel admits the unique spectral
+representation
+
+\begin{equation}
+\mathcal K =
+\operatorname{diag}(2,3,4).
+\label{eq:primitive_kernel_final}
+\end{equation}
+
+Its spectrum is therefore
+
+\begin{equation}
+\operatorname{spec}(\mathcal K) = {2,3,4}.
+\label{eq:primitive_spectrum}
+\end{equation}
+
+The eigenvalues are determined uniquely by the
+mass-partition and projected-area invariants of the closure
+geometry.
+
+\end{theorem}
+
+The primitive closure kernel therefore provides the first
+spectral object generated directly from the geometric
+confinement structure. In the following section,
+closure-selected particle sectors will be associated with
+projected restrictions of \(\mathcal K\), leading to the
+spectral closure determinant mass theorem.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Spectral Closure Determinant Mass Theorem}
+\label{sec:spectral_closure_determinant_mass_theorem}
+
+The primitive closure kernel constructed in Section~4
+encodes the fundamental geometric invariants of the confinement
+structure. To obtain particle-sector masses, the kernel must be
+restricted to closure-selected sectors of the operator spectrum.
+
+The resulting projected kernels determine the mass spectrum
+through their non-zero spectral determinants.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Projected Closure Kernel}
+\label{subsec:projected_closure_kernel}
+
+Let
+
+\begin{equation}
+E_i^{\rm phys} =
+P_{\rm cl}E_i
+\end{equation}
+
+denote the closure-selected eigenspace introduced in
+Section~3.
+
+Associated with each retained sector is a projection operator
+
+\begin{equation}
+P_{\rm cl}^{(i)}
+:
+\mathcal Q
+\rightarrow
+\mathcal Q.
+\end{equation}
+
+The corresponding projected closure kernel is defined by
+\begin{equation}
+\mathcal K_i
+=
+\left.
+P_{\rm cl}^{(i)}
+\,\mathcal K\,
+P_{\rm cl}^{(i)}
+\right|_{E_i^{\rm phys}} .
+\label{eq:projected_kernel}
+\end{equation}
+
+Thus \(\mathcal K_i\) represents the restriction of the
+primitive closure kernel to the closure-selected sector
+associated with the (i)-th particle state.
+
+Different particle sectors correspond to different projected
+restrictions of the same primitive kernel.
+
+Consequently, the particle spectrum is generated from a common
+geometric object rather than from independent particle-specific
+operators.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Non-Zero Spectral Determinant}
+\label{subsec:nonzero_spectral_determinant}
+
+The projected kernels may possess null directions arising from
+closure projection.
+
+To isolate the physically relevant spectral content, we define
+the non-zero spectral determinant
+
+\begin{equation}
+\det{}'(\mathcal K_i) = 
+\prod_{\lambda \in
+\operatorname{spec}(\mathcal K_i)
+\setminus {0}}
+\lambda.
+\label{eq:reduced_determinant}
+\end{equation}
+
+The prime indicates that any vanishing eigenvalues are omitted
+from the product.
+
+For example,
+
+\begin{equation}
+\det{}'\!\left(
+\operatorname{diag}(2,0,0)
+\right)
+=
+2.
+\end{equation}
+
+while
+
+\begin{equation}
+\det{}'\!\left(
+\operatorname{diag}(2,3,0)
+\right)
+=
+6.
+\end{equation}
+
+The quantity \(\det{}'(\mathcal K_i)\) therefore measures the
+effective closure content of the projected sector.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Spectral Closure Determinant Mass Theorem}
+\label{subsec:mass_theorem}
+
+The physical mass associated with a closure-selected sector is
+obtained by combining the universal sector scale with the
+corresponding projected spectral determinant.
+
+\begin{theorem}[Spectral Closure Determinant Mass Theorem]
+\label{thm:spectral_mass_theorem}
+
+Let \(\mathcal K_i\) denote the projected closure kernel
+associated with a closure-selected sector.
+
+Then the corresponding particle mass is
+
+\begin{equation}
+m_i
+=
+M_{\rm sector}\,
+\det{}'(\mathcal K_i).
+\label{eq:spectral_mass_theorem}
+\end{equation}
+
+where \(M_{\rm sector}\) is the normalization scale associated
+with the sector under consideration.
+
+\end{theorem}
+
+\begin{proof}
+
+The primitive closure kernel contains only dimensionless
+geometric information.
+
+The quantity
+
+\begin{equation}
+\det{}'(\mathcal K_i)
+\end{equation}
+
+is therefore dimensionless.
+
+A physical mass scale must consequently enter through a
+sector-dependent normalization factor
+\(M_{\rm sector}\).
+
+Multiplication by \(M_{\rm sector}\) yields a quantity with
+dimensions of mass,
+
+\begin{equation}
+[M_{\rm sector}] ={\rm mass},
+\end{equation}
+
+and therefore
+
+\begin{equation}
+[m_i] = 
+{\rm mass}.
+\end{equation}
+
+The resulting mass is uniquely determined by the projected
+closure kernel and the corresponding sector normalization
+scale.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Uniqueness}
+\label{subsec:mass_uniqueness}
+
+The mass theorem depends only upon
+
+\begin{equation}
+\mathcal K,
+\qquad
+P_{\rm cl}^{(i)},
+\qquad
+M_{\rm sector}.
+\end{equation}
+
+No particle-specific parameters appear in
+Eq.~\eqref{eq:spectral_mass_theorem}.
+
+Consequently, once the closure projection is fixed, the
+projected kernel \(\mathcal K_i\) is uniquely determined.
+
+The corresponding reduced determinant
+
+\begin{equation}
+\det{}'(\mathcal K_i)
+\end{equation}
+
+is therefore unique, and the particle mass follows uniquely
+from Eq.~\eqref{eq:spectral_mass_theorem}.
+
+The construction thus replaces the classification-based mass
+assignment of earlier formulations with a direct spectral
+determination of particle masses from closure-selected sectors.
+
+%%%%%%%%%%%%%=============================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Closure Determinant Construction}
+\label{subsec:closure_determinant_construction}
+
+The primitive closure kernel
+
+\begin{equation}
+\mathcal K =
+\operatorname{diag}(2,3,4)
+\end{equation}
+
+contains the three fundamental closure eigenvalues derived from
+the geometric invariants of the confinement structure.
+
+A closure-selected sector generally does not sample the entire
+primitive kernel. Instead, the projection operator
+
+\begin{equation}
+P_{\rm cl}^{(i)}
+\end{equation}
+
+selects a restricted collection of primitive closure directions.
+
+Consequently, the projected kernel
+
+\begin{equation}
+\mathcal K_i
+=
+\left.
+P_{\rm cl}^{(i)}
+\,\mathcal K\,
+P_{\rm cl}^{(i)}
+\right|_{E_i^{\rm phys}} .
+\label{eq:projected_kernel}
+\end{equation}
+
+may contain repeated occurrences of the primitive eigenvalues
+(2), (3), and (4), as well as inverse contributions
+associated with closure-deficit directions.
+
+Let
+
+\begin{equation}
+\alpha_i,
+\qquad
+\beta_i,
+\qquad
+\gamma_i
+\end{equation}
+
+denote the net multiplicities of the primitive closure
+eigenvalues (2), (3), and (4) appearing in the projected
+kernel \(\mathcal K_i\).
+
+The corresponding reduced determinant therefore assumes the form
+
+\begin{equation}
+\det{}'(\mathcal K_i) =
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}.
+\label{eq:closure_determinant_factorization}
+\end{equation}
+
+The exponents
+(\alpha_i),
+(\beta_i),
+and
+(\gamma_i)
+are not introduced as independent particle-sector parameters.
+
+Rather, they are determined by the spectral content of the
+projected kernel and therefore arise from the closure-selected
+eigenspace itself.
+
+Consequently, Eq.~\eqref{eq:closure_determinant_factorization}
+should be interpreted as a spectral factorization theorem rather
+than as a classification rule.
+
+Combining
+Eq.~\eqref{eq:closure_determinant_factorization}
+with the Spectral Closure Determinant Mass Theorem yields
+
+\begin{equation}
+m_i =
+M_{\rm sector}
+,2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}.
+\label{eq:spectral_mass_factorization}
+\end{equation}
+
+Thus the particle mass spectrum is determined by the primitive
+closure eigenvalues together with their multiplicities inside
+the closure-selected projected kernel.
+
+In the following sections, the charged-lepton, quark, and
+neutral sectors will be obtained by evaluating the projected
+closure determinants associated with their respective
+closure-selected eigenspaces.
+
+%%%%%%%%%%=============================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Extraction of Closure Multiplicities from Projected Eigenspace Data}
+\label{subsec:closure_multiplicity_extraction}
+
+It remains to specify how the closure exponents
+\(\alpha_i\), \(\beta_i\), and \(\gamma_i\) are obtained from
+the projected eigenspace data.
+
+The closure quotient space decomposes as
+
+\begin{equation}
+\mathcal Q = 
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B,
+\end{equation}
+
+where \(\mathcal Q_M\), \(\mathcal Q_A\), and \(\mathcal Q_B\)
+are the primitive subspaces associated respectively with the
+closure eigenvalues (2), (3), and (4).
+
+Let
+
+\begin{equation}
+\Pi_M,
+\qquad
+\Pi_A,
+\qquad
+\Pi_B
+\end{equation}
+
+denote the corresponding projections onto these primitive
+closure subspaces.
+
+For a retained particle sector (i), the closure projection
+\(P_{\rm cl}^{(i)}\) determines how much of each primitive
+closure direction survives inside the projected eigenspace.
+
+The closure multiplicities are therefore defined by
+
+\begin{equation}
+\alpha_i = 
+\operatorname{sgn}*M^{(i)}
+\operatorname{rank}
+\left(
+\Pi_M P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\label{eq:alpha_extraction}
+\end{equation}
+
+\begin{equation}
+\beta_i =
+\operatorname{sgn}*A^{(i)}
+\operatorname{rank}
+\left(
+\Pi_A P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\label{eq:beta_extraction}
+\end{equation}
+
+and
+
+\begin{equation}
+\gamma_i =
+\operatorname{sgn}*B^{(i)}
+\operatorname{rank}
+\left(
+\Pi_B P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right).
+\label{eq:gamma_extraction}
+\end{equation}
+
+Here
+\(\operatorname{sgn}_M^{(i)}\),
+\(\operatorname{sgn}_A^{(i)}\), and
+\(\operatorname{sgn}_B^{(i)}\)
+record whether the corresponding primitive direction enters as
+a resolved closure contribution or as a closure-deficit
+contribution.
+
+A positive sign corresponds to a resolved closure direction,
+while a negative sign corresponds to an inverse or deficit
+direction.
+
+Thus the exponents are not assigned independently. They are
+computed from the ranks of the primitive components of the
+closure projection acting on the eigenspace \(E_i\).
+
+Equivalently,
+
+\begin{equation}
+\begin{aligned}
+(\alpha_i,\beta_i,\gamma_i)
+=
+\Bigl(
+&
+\operatorname{sgn}_M^{(i)}
+\operatorname{rank}
+\!\left(
+\Pi_M
+P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\\[0.3em]
+&
+\operatorname{sgn}_A^{(i)}
+\operatorname{rank}
+\!\left(
+\Pi_A
+P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\\[0.3em]
+&
+\operatorname{sgn}_B^{(i)}
+\operatorname{rank}
+\!\left(
+\Pi_B
+P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right)
+\Bigr).
+\end{aligned}
+\label{eq:exponent_triplet_extraction}
+\end{equation}
+
+Substitution into the closure determinant gives
+
+\begin{equation}
+\det{}'(\mathcal K_i) =
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}.
+\end{equation}
+
+This construction replaces the earlier admissibility-exponent
+assignment with a projected-rank calculation. The quantities
+\(\alpha_i\), \(\beta_i\), and \(\gamma_i\) are therefore
+spectral multiplicities of primitive closure directions inside
+the retained eigenspace, not particle-by-particle fitting
+parameters.
+
+\begin{theorem}[Projected-Rank Determination of Closure Exponents]
+\label{thm:projected_rank_exponents}
+
+Let \(E_i\) be a retained eigenspace of the closure-compatible
+operator \(\mathcal O\), and let \(P_{\rm cl}^{(i)}\) be the
+closure projection associated with that sector. If the closure
+quotient space decomposes as
+
+\begin{equation}
+\mathcal Q = 
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B,
+\end{equation}
+
+then the closure determinant exponents are uniquely determined
+by the projected ranks
+
+\begin{equation}
+\alpha_i =
+\operatorname{sgn}*M^{(i)}
+\operatorname{rank}
+\left(
+\Pi_M P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\end{equation}
+
+\begin{equation}
+\beta_i =
+\operatorname{sgn}*A^{(i)}
+\operatorname{rank}
+\left(
+\Pi_A P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\end{equation}
+
+and
+
+\begin{equation}
+\gamma_i = \operatorname{sgn}*B^{(i)}
+\operatorname{rank}
+\left(
+\Pi_B P*{\rm cl}^{(i)}
+\big|_{E_i}
+\right).
+\end{equation}
+
+Consequently,
+
+\begin{equation}
+\det{}'(\mathcal K_i) =
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}
+\end{equation}
+
+is fixed once the projected eigenspace data are fixed.
+
+\end{theorem}
+
+\begin{proof}
+
+The primitive closure kernel acts diagonally on the direct-sum
+decomposition
+
+\begin{equation}
+\mathcal Q = 
+\mathcal Q_M
+\oplus
+\mathcal Q_A
+\oplus
+\mathcal Q_B.
+\end{equation}
+
+Therefore each retained sector can receive contributions only
+from the primitive directions that survive under the projected
+closure map \(P_{\rm cl}^{(i)}\).
+
+The number of surviving (2)-directions is counted by
+
+\begin{equation}
+\operatorname{rank}
+\left(
+\Pi_M P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\end{equation}
+
+the number of surviving (3)-directions by
+
+\begin{equation}
+\operatorname{rank}
+\left(
+\Pi_A P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right),
+\end{equation}
+
+and the number of surviving (4)-directions by
+
+\begin{equation}
+\operatorname{rank}
+\left(
+\Pi_B P_{\rm cl}^{(i)}
+\big|_{E_i}
+\right).
+\end{equation}
+
+Resolved directions contribute positively to the determinant,
+while closure-deficit directions contribute inversely. This
+accounts for the sign factors
+\(\operatorname{sgn}_M^{(i)}\),
+\(\operatorname{sgn}_A^{(i)}\), and
+\(\operatorname{sgn}_B^{(i)}\).
+
+Hence the reduced determinant is uniquely
+
+\begin{equation}
+\det{}'(\mathcal K_i) =
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}.
+\end{equation}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Generation Structure of Projected Closure Modes}
+\label{subsec:generation_structure}
+
+The closure determinant construction determines the primitive
+spectral factors associated with a retained particle sector.
+However, the charged-lepton spectrum contains three distinct
+generations whose projected closure structures are not
+identical.
+
+To describe the generation hierarchy, we introduce a
+generation space
+
+\begin{equation}
+\mathcal G
+=
+\operatorname{span}
+\{g_1,g_2,g_3\}.
+\end{equation}
+
+where \(g_1\), \(g_2\), and \(g_3\) denote the first, second,
+and third charged-lepton generations respectively.
+
+Within the present framework, adjacent generations are
+interpreted as neighbouring closure excitations. The resulting
+generation structure therefore forms a one-dimensional
+three-node chain
+
+\begin{equation}
+g_1
+\longleftrightarrow
+g_2
+\longleftrightarrow
+g_3.
+\label{eq:generation_chain}
+\end{equation}
+
+The unique nearest-neighbour self-adjoint Laplacian associated
+with this chain is
+
+\begin{equation}
+L_3
+=
+\begin{pmatrix}
+1 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 1
+\end{pmatrix}.
+\label{eq:L3}
+\end{equation}
+
+The matrix \(L_3\) is therefore not introduced as an additional
+classification object. Rather, it is the canonical graph
+Laplacian of the generation chain
+Eq.~\eqref{eq:generation_chain}.
+
+The spectrum of \(L_3\) is
+
+\begin{equation}
+\operatorname{spec}(L_3) =
+{0,1,3}.
+\label{eq:L3Spectrum}
+\end{equation}
+
+The vanishing eigenvalue corresponds to the uniform closure
+mode of the generation chain, while the non-zero eigenvalues
+represent the first and second independent generation
+excitations.
+
+Within the closure determinant framework, the projected-area
+closure direction is associated with the primitive eigenvalue
+
+\begin{equation}
+\chi_B = 4.
+\end{equation}
+
+The generation operator therefore determines how many
+independent projected-area closure excitations survive within a
+given generation sector.
+
+Let
+
+\begin{equation}
+n_i
+\in
+{0,1,3}
+\end{equation}
+
+denote the generation excitation number associated with the
+(i)-th charged-lepton sector.
+
+The projected-area contribution to the closure determinant is
+then
+
+\begin{equation}
+4^{n_i}.
+\label{eq:generation_factor}
+\end{equation}
+
+Consequently, the three charged-lepton generations are
+associated with
+
+\begin{equation}
+n_e = 0,
+\qquad
+n_\mu =
+1,
+\qquad
+n_\tau = 3.
+\label{eq:lepton_generation_numbers}
+\end{equation}
+
+The corresponding projected-area factors are therefore
+
+\begin{equation}
+4^{n_e} = 1,
+\end{equation}
+
+\begin{equation}
+4^{n_\mu} = 4,
+\end{equation}
+
+and
+
+\begin{equation}
+4^{n_\tau} = 64.
+
+\end{equation}
+
+Thus the factors
+
+\begin{equation}
+1,
+\qquad
+4,
+\qquad
+64
+\end{equation}
+
+arise from the spectrum of the generation Laplacian rather than
+from independent particle-by-particle assignments.
+
+In the next section, these generation factors are combined with
+the closure determinant construction to derive the charged-
+lepton mass spectrum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Closure-Deficit Structure of the Lowest Retained Sector}
+\label{subsec:closure_deficit_lowest_sector}
+
+The generation structure derived above explains the projected-area
+factors
+
+\begin{equation}
+1,
+\qquad
+4,
+\qquad
+64
+\end{equation}
+
+appearing in the charged-lepton sequence. It remains to explain
+the additional suppression factor associated with the lowest
+retained charged sector.
+
+The electron sector is interpreted as the lowest retained
+boundary-confined charged mode. As the ground sector, it does
+not carry a resolved projected-area excitation. Hence its
+projected-area generation number is
+
+\begin{equation}
+n_e = 
+0.
+\end{equation}
+
+The lowest retained sector is instead characterized by closure
+deficit relative to the fully resolved boundary modes. This
+deficit has two geometric contributions.
+
+First, the mass-partition invariant
+
+\begin{equation}
+\chi_M =
+2
+\end{equation}
+
+enters inversely because the lowest charged mode occupies the
+confined component before mass-partition lifting. This gives one
+inverse mass-partition contribution,
+
+\begin{equation}
+2^{-1}.
+\end{equation}
+
+Second, the projected-area invariant
+
+\begin{equation}
+\chi_A = 3
+\end{equation}
+
+enters inversely across the three compact closure directions.
+The lowest charged boundary mode is therefore suppressed by
+
+\begin{equation}
+3^{-3}.
+\end{equation}
+
+Thus the reduced determinant for the lowest retained charged
+sector is
+
+\begin{equation}
+\det{}'(\mathcal K_e) =
+2^{-1}3^{-3}4^{0}.
+\label{eq:electron_closure_deficit}
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+\det{}'(\mathcal K_e)
+=
+2^{-1}3^{-3}
+=
+\frac{1}{2\cdot 3^3}
+=
+\frac{1}{54}.
+\label{eq:electron_determinant}
+\end{equation}
+
+This suppression is not introduced by fitting the electron mass.
+It follows from the interpretation of the electron as the lowest
+boundary-confined charged sector: one inverse mass-partition
+direction and three inverse excluded-area closure directions
+survive in the projected deficit kernel.
+
+We summarize this as follows.
+
+\begin{proposition}[Lowest-Sector Closure Deficit]
+\label{prop:lowest_sector_deficit}
+
+Let \(E_e^{\rm phys}\) be the lowest retained charged
+closure-selected sector. If this sector carries no resolved
+projected-area excitation and is boundary-confined relative to
+the primitive closure geometry, then its reduced closure
+determinant is
+
+\begin{equation}
+\det{}'(\mathcal K_e) =
+2^{-1}3^{-3}.
+\end{equation}
+
+\end{proposition}
+
+\begin{proof}
+
+The lowest retained charged sector has projected-area generation
+number
+
+\begin{equation}
+n_e =
+0,
+\end{equation}
+
+and therefore contributes
+
+\begin{equation}
+4^{n_e} = 4^0 = 1.
+\end{equation}
+
+Since the sector is boundary-confined before mass-partition
+lifting, the mass-partition direction contributes inversely,
+
+\begin{equation}
+\chi_M^{-1} =
+2^{-1}.
+\end{equation}
+
+Since the suppression occurs across the three compact closure
+directions, the excluded-area closure contribution is
+
+\begin{equation}
+\chi_A^{-3} =
+3^{-3}.
+\end{equation}
+
+Multiplying the surviving primitive closure contributions gives
+
+\begin{equation}
+\det{}'(\mathcal K_e)
+=
+2^{-1}3^{-3}4^0
+=
+\frac{1}{2\cdot 3^3}
+=
+\frac{1}{54}.
+\label{eq:electron_determinant}
+\end{equation}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Charged-Lepton Spectrum}
+\label{sec:charged_lepton_spectrum}
+
+We now apply the Spectral Closure Determinant Mass Theorem
+developed in Section~5 to the charged-lepton sector.
+
+The charged leptons provide the simplest non-trivial test of the
+closure determinant framework because their masses arise from a
+combination of the lowest-sector closure deficit and the
+generation structure determined by the operator \(L_3\).
+
+Throughout this section, the charged-sector normalization scale
+is taken to be
+
+\begin{equation}
+M_{\rm surf} =
+27.29~{\rm MeV},
+\end{equation}
+
+derived in Section~2 from the confinement geometry of the
+Universal Confinement Zone.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Electron Sector}
+\label{subsec:electron_sector}
+
+The electron corresponds to the lowest retained charged
+closure-selected sector.
+
+As established in
+Section~\ref{subsec:closure_deficit_lowest_sector},
+the lowest retained sector possesses no projected-area
+generation excitation. Therefore
+
+\begin{equation}
+n_e =
+0.
+\end{equation}
+
+The projected-area contribution is consequently
+
+\begin{equation}
+4^{n_e} = 4^0 =
+1.
+\end{equation}
+
+The electron sector is instead characterized by a closure
+deficit consisting of
+
+\begin{equation}
+\alpha_e =
+-1,
+\end{equation}
+
+arising from the inverse mass-partition contribution, and
+
+\begin{equation}
+\beta_e =
+-3,
+\end{equation}
+
+arising from the three inverse excluded-area closure
+directions.
+
+The corresponding reduced determinant is therefore
+
+\begin{equation}
+\det{}'(\mathcal K_e) =
+2^{-1}
+3^{-3}
+4^{0}.
+\end{equation}
+
+Hence
+
+\begin{equation}
+\det{}'(\mathcal K_e) =
+\frac{1}{2}
+\cdot
+\frac{1}{27} =
+\frac{1}{54}.
+\label{eq:electron_determinant_final}
+\end{equation}
+
+Applying the Spectral Closure Determinant Mass Theorem,
+
+\begin{equation}
+m_e =
+M_{\rm surf}
+\det{}'(\mathcal K_e),
+\end{equation}
+
+gives
+
+\begin{equation}
+m_e =
+M_{\rm surf}
+\frac{1}{54}.
+\end{equation}
+
+Substituting
+
+\begin{equation}
+M_{\rm surf} =
+27.29~{\rm MeV},
+\end{equation}
+
+yields
+
+\begin{equation}
+m_e^{\rm SFT} = \frac{27.29}{54} = 0.505~{\rm MeV}.
+\label{eq:electron_mass_sft}
+\end{equation}
+
+Thus the electron mass is obtained from the universal surface
+mass scale together with the closure-deficit structure of the
+lowest retained charged sector.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Muon Sector}
+\label{subsec:muon_sector}
+
+The muon corresponds to the first excited generation of the
+charged-lepton sector.
+
+From the generation operator
+
+\begin{equation}
+L_3 =
+\begin{pmatrix}
+1 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 1
+\end{pmatrix},
+\end{equation}
+
+the first non-zero generation excitation is
+
+\begin{equation}
+n_\mu = 1.
+\end{equation}
+
+The projected-area contribution is therefore
+
+\begin{equation}
+4^{n_\mu} = 4.
+\end{equation}
+
+Since the muon is not a closure-deficit sector,
+
+\begin{equation}
+\alpha_\mu = 0,
+\qquad
+\beta_\mu = 0.
+\end{equation}
+
+Consequently,
+
+\begin{equation}
+\det{}'(\mathcal K_\mu) =
+2^{0}
+3^{0}
+4^{1} =
+4.
+\end{equation}
+
+The mass theorem then gives
+
+\begin{equation}
+m_\mu =
+M_{\rm surf}
+\det{}'(\mathcal K_\mu) = 
+4M_{\rm surf}.
+\end{equation}
+
+Using
+\(M_{\rm surf}=27.29~{\rm MeV}\),
+
+\begin{equation}
+m_\mu^{\rm SFT}
+=
+4\,M_{\rm surf}
+=
+4\times 27.29~{\rm MeV}
+=
+109.2~{\rm MeV}.
+\label{eq:muon_mass_sft}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Tau Sector}
+\label{subsec:tau_sector}
+
+The tau corresponds to the highest retained charged-lepton
+generation.
+
+The generation operator yields the second independent
+generation excitation,
+
+\begin{equation}
+n_\tau = 3.
+\end{equation}
+
+The projected-area contribution is therefore
+
+\begin{equation}
+4^{n_\tau} = 4^3 = 64.
+\end{equation}
+
+As with the muon sector,
+
+\begin{equation}
+\alpha_\tau = 0,
+\qquad
+\beta_\tau = 0.
+\end{equation}
+
+Hence
+
+\begin{equation}
+\det{}'(\mathcal K_\tau) = 
+2^{0}
+3^{0}
+4^{3} = 64.
+\end{equation}
+
+The mass theorem gives
+
+\begin{equation}
+m_\tau = 
+M_{\rm surf}
+\det{}'(\mathcal K_\tau) = 
+64M_{\rm surf}.
+\end{equation}
+
+Substituting the surface mass scale yields
+
+\begin{equation}
+m_\tau^{\rm SFT} = 64\times27.29 =
+1.747~{\rm GeV}.
+\label{eq:tau_mass_sft}
+\end{equation}
+
+Thus the charged-lepton hierarchy follows from the combination
+of the lowest-sector closure deficit and the generation
+structure induced by the three-node closure chain.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Uniqueness of the Charged-Lepton Generation Assignment}
+\label{subsec:charged_lepton_generation_uniqueness}
+
+\begin{theorem}[Uniqueness of the Charged-Lepton Generation Assignment]
+\label{thm:charged_lepton_generation_uniqueness}
+
+Let the charged-lepton generation space be the three-node
+nearest-neighbour closure chain
+
+\begin{equation}
+g_1
+\longleftrightarrow
+g_2
+\longleftrightarrow
+g_3.
+\end{equation}
+
+The unique self-adjoint nearest-neighbour graph Laplacian on
+this chain is
+
+\begin{equation}
+L_3
+=
+\begin{pmatrix}
+1 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 1
+\end{pmatrix}.
+\end{equation}
+
+Its spectrum is
+
+\begin{equation}
+\operatorname{spec}(L_3)
+=
+\{0,1,3\}.
+\end{equation}
+
+If the charged-lepton hierarchy is required to preserve
+monotonic generation growth, then the unique assignment of
+generation excitation numbers is
+
+\begin{equation}
+n_e=0,
+\qquad
+n_\mu=1,
+\qquad
+n_\tau=3.
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+The three-node generation chain possesses three spectral
+generation levels. The graph Laplacian \(L_3\) has eigenvalues
+
+\begin{equation}
+0,
+\qquad
+1,
+\qquad
+3.
+\end{equation}
+
+The electron is identified as the lowest retained charged
+sector and therefore corresponds to the zero-generation mode,
+
+\begin{equation}
+n_e=0.
+\end{equation}
+
+The remaining charged-lepton sectors must preserve the spectral
+ordering of the non-zero generation excitations. Since
+
+\begin{equation}
+1<3,
+\end{equation}
+
+the only ordering-preserving assignment is
+
+\begin{equation}
+n_\mu=1,
+\qquad
+n_\tau=3.
+\end{equation}
+
+Thus the unique monotonic charged-lepton assignment is
+
+\begin{equation}
+e
+\longrightarrow
+0,
+\qquad
+\mu
+\longrightarrow
+1,
+\qquad
+\tau
+\longrightarrow
+3.
+\end{equation}
+
+\end{proof}
+
+This assignment is not chosen by numerical fitting. It follows
+from three ingredients:
+
+\begin{enumerate}
+\item the identification of the electron as the lowest retained
+charged sector;
+\item the generation spectrum
+\(\operatorname{spec}(L_3)=\{0,1,3\}\);
+\item monotonicity of the generation hierarchy.
+\end{enumerate}
+
+Any alternative assignment either places the electron in an
+excited generation sector or reverses the ordering of the
+remaining charged-lepton excitations. Therefore the assignment
+above is unique within the charged-lepton closure framework.
+
+A consolidated summary of the charged-lepton spectrum is
+presented in Appendix~\ref{app:summary_tables}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quark Spectrum}
+\label{sec:quark_spectrum}
+
+\subsection{Geometric Selection of the Quark Closure Sectors}
+\label{subsec:geometric_selection_quark_closure_sectors}
+
+The quark-sector determinants are selected by the primitive
+closure partitions of the confinement geometry. The mass
+partition is
+
+\begin{equation}
+M_{\rm confined}:M_{\rm lost}:M_m
+=
+1:2:3,
+\label{eq:quark_mass_partition_repeat}
+\end{equation}
+
+while the projected-area partition is
+
+\begin{equation}
+A_{\rm proj}:A_{\rm lost}:A_{\rm total}
+=
+1:3:4.
+\label{eq:quark_area_partition_repeat}
+\end{equation}
+
+These two partitions supply the primitive closure invariants
+
+\paragraph{Primitive Closure Invariants}
+
+The primitive confinement partitions
+
+\begin{equation}
+M_{\rm confined}:M_{\rm lost}:M_m
+=
+1:2:3,
+\label{eq:primitive_mass_partition}
+\end{equation}
+
+and
+
+\begin{equation}
+A_{\rm proj}:A_{\rm lost}:A_{\rm total}
+=
+1:3:4,
+\label{eq:primitive_area_partition}
+\end{equation}
+
+generate the primitive closure invariants
+
+\begin{equation}
+\chi_M
+=
+\frac{M_{\rm lost}}
+     {M_{\rm confined}}
+=
+2,
+\end{equation}
+
+\begin{equation}
+\chi_A
+=
+\frac{A_{\rm lost}}
+     {A_{\rm proj}}
+=
+3,
+\end{equation}
+
+and
+
+\begin{equation}
+\chi_B
+=
+\frac{A_{\rm total}}
+     {A_{\rm proj}}
+=
+4.
+\end{equation}
+
+Hence the primitive closure kernel is generated by the invariant
+set
+
+\begin{equation}
+\{\chi_M,\chi_A,\chi_B\}
+=
+\{2,3,4\}.
+\end{equation}
+
+\begin{lemma}[Admissible Heavy-Quark Rank Lattice]
+\label{lem:heavy_quark_rank_lattice}
+
+The heavy-quark closure sectors are generated from the
+primitive confinement partitions
+(Eqs.~\eqref{eq:quark_mass_partition_repeat}
+and \eqref{eq:quark_area_partition_repeat}).
+
+The mass partition
+
+\begin{equation}
+1:2:3
+\end{equation}
+
+defines a three-level ordered closure hierarchy.
+
+A colour-multiplicity rank measures the number of successive
+closure lifts above the lowest retained level. For the ordered
+hierarchy
+
+\begin{equation}
+1
+\longrightarrow
+2
+\longrightarrow
+3,
+\end{equation}
+
+there are exactly
+
+\begin{equation}
+3-1=2
+\end{equation}
+
+independent lifts.
+
+Including the unlifted configuration therefore yields
+
+\begin{equation}
+r_A\in\{0,1,2\}.
+\label{eq:rA_values}
+\end{equation}
+
+The projected-area partition
+
+\begin{equation}
+1:3:4
+\end{equation}
+
+contains the baseline projected state together with two
+non-trivial projected-area activations.
+
+The baseline state is
+
+\begin{equation}
+A_{\rm proj},
+\end{equation}
+
+while the non-trivial activations are
+
+\begin{equation}
+A_{\rm lost},
+\qquad
+A_{\rm total}.
+\end{equation}
+
+We define the projected-area rank \(r_B\) by counting the
+non-trivial projected-area activations above the baseline
+projected state.
+
+The ordered activation sequence is therefore
+
+\begin{equation}
+3
+\longrightarrow
+4.
+\end{equation}
+
+Assigning ranks according to this sequence gives
+
+\begin{equation}
+3 \mapsto r_B=1,
+\qquad
+4 \mapsto r_B=2.
+\end{equation}
+
+Hence
+
+\begin{equation}
+r_B\in\{1,2\}.
+\label{eq:rB_values}
+\end{equation}
+
+The baseline projected state corresponds to \(r_B=0\).
+Since the heavy-quark hierarchy is constructed from non-trivial
+projected-area activations, only \(r_B\ge1\) contributes to the
+heavy-quark rank lattice.
+
+\begin{equation}
+(r_A,r_B)
+\in
+\{0,1,2\}
+\times
+\{1,2\}.
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+(r_A,r_B)
+\in
+\{
+(0,1),
+(0,2),
+(1,1),
+(1,2),
+(2,1),
+(2,2)
+\}.
+\label{eq:heavy_quark_rank_lattice}
+\end{equation}
+
+Thus the primitive confinement geometry uniquely generates six
+admissible resolved colour-area sectors through the Cartesian
+product of the mass-partition rank set \(\{0,1,2\}\) and the
+projected-area rank set \(\{1,2\}\). Physical heavy-quark states are obtained by closure selection
+within this admissible rank lattice.
+
+\end{lemma}
+
+\begin{proof}
+
+The mass partition
+
+\[
+1:2:3
+\]
+
+contains three ordered closure levels and therefore
+
+\[
+3-1=2
+\]
+
+independent lifts above the lowest level, yielding
+
+\[
+r_A\in\{0,1,2\}.
+\]
+
+Similarly, the projected-area partition
+
+\[
+1:3:4
+\]
+
+contains the baseline projected state together with two
+non-trivial projected-area activations. Assigning ranks to the
+resolved activations gives
+
+\[
+r_B\in\{1,2\}.
+\]
+
+Taking the Cartesian product of the admissible colour and area
+rank sets yields
+
+\[
+\{0,1,2\}
+\times
+\{1,2\},
+\]
+
+which expands to
+
+\[
+\{
+(0,1),
+(0,2),
+(1,1),
+(1,2),
+(2,1),
+(2,2)
+\}.
+\]
+
+Hence the heavy-quark closure geometry admits exactly six
+admissible resolved colour-area sectors.
+
+\end{proof}
+
+\begin{proposition}[Monotonic Closure-Growth Principle]
+\label{prop:monotonic_closure_growth}
+
+The retained heavy-quark hierarchy must form a monotonic
+closure-growth chain connecting the lowest resolved
+projected-area activation to the saturated colour-area state.
+
+Consequently, both closure ranks satisfy
+
+\begin{equation}
+r_A^{(i+1)}
+\ge
+r_A^{(i)},
+\qquad
+r_B^{(i+1)}
+\ge
+r_B^{(i)}.
+\end{equation}
+
+\end{proposition}
+
+\begin{proposition}[Minimal Resolved Colour-Area Activation]
+\label{prop:minimal_resolved_colour_area_activation}
+
+The resolved heavy-quark hierarchy is generated by the two
+primitive closure directions associated with
+
+\begin{equation}
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+A sector is colour-area resolved if and only if both primitive
+directions are activated.
+
+Consequently the minimal non-trivial resolved colour-area
+content is
+
+\begin{equation}
+\chi_A\chi_B.
+\end{equation}
+
+\end{proposition}
+
+\begin{proof}
+
+The invariant \(\chi_A\) encodes colour-multiplicity activation,
+while \(\chi_B\) encodes projected-area activation.
+
+A sector possessing only a colour activation or only a
+projected-area activation fails to realize the full
+colour-area structure. Full colour-area resolution therefore
+requires simultaneous activation of both primitive directions,
+and any sector carrying only one activation remains partially
+resolved.
+
+The first fully resolved colour-area sector therefore requires
+simultaneous activation of both primitive directions.
+
+Hence the minimal resolved colour-area content is
+
+\begin{equation}
+\chi_A\chi_B.
+\end{equation}
+
+\end{proof}
+
+\begin{definition}[Minimal Closure-Deficit State]
+\label{def:minimal_closure_deficit_state}
+
+Let the resolved colour-area hierarchy be generated by the
+primitive closure invariants
+
+\begin{equation}
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+By Proposition~\ref{prop:minimal_resolved_colour_area_activation},
+the first retained resolved colour-area sector possesses the
+minimal non-trivial primitive activation content
+
+\begin{equation}
+\chi_A\chi_B.
+\end{equation}
+
+An unresolved predecessor of a resolved sector is defined as a
+closure state obtained by removing the minimal primitive
+activation content required to generate that sector.
+
+\end{definition}
+
+\begin{corollary}[Light-Quark Deficit Determinant]
+\label{cor:light_quark_deficit}
+
+The unresolved predecessor of the first retained resolved
+colour-area sector carries determinant
+
+\begin{equation}
+\det{}'(\mathcal K_{\rm light})
+=
+\chi_A^{-1}\chi_B^{-1}.
+\end{equation}
+
+Substituting
+
+\begin{equation}
+\chi_A=3,
+\qquad
+\chi_B=4,
+\end{equation}
+
+gives
+
+\begin{equation}
+\det{}'(\mathcal K_{\rm light})
+=
+3^{-1}4^{-1}.
+\end{equation}
+
+Therefore the corresponding deficit exponents are
+
+\begin{equation}
+(-1,-1).
+\end{equation}
+
+\end{corollary}
+
+\begin{proof}
+
+By Proposition~\ref{prop:minimal_resolved_colour_area_activation},
+the first retained resolved colour-area sector is generated by
+the minimal non-trivial primitive activation content
+
+\begin{equation}
+\chi_A\chi_B.
+\end{equation}
+
+By Definition~\ref{def:minimal_closure_deficit_state}, its
+unresolved predecessor is obtained by removing these primitive
+activations.
+
+Removal of the colour activation contributes the inverse factor
+
+\begin{equation}
+\chi_A^{-1},
+\end{equation}
+
+while removal of the projected-area activation contributes
+
+\begin{equation}
+\chi_B^{-1}.
+\end{equation}
+
+Hence the determinant of the unresolved predecessor is
+
+\begin{equation}
+\det{}'(\mathcal K_{\rm light})
+=
+\chi_A^{-1}\chi_B^{-1}.
+\end{equation}
+
+Substituting
+
+\begin{equation}
+\chi_A=3,
+\qquad
+\chi_B=4,
+\end{equation}
+
+yields
+
+\begin{equation}
+\det{}'(\mathcal K_{\rm light})
+=
+3^{-1}4^{-1}.
+\end{equation}
+
+Therefore the minimal closure-deficit state carries the
+exponent pair
+
+\begin{equation}
+(-1,-1).
+\end{equation}
+
+\end{proof}
+
+The up quark is the unlifted member of this lowest retained
+colour-deficit sector,
+
+\begin{equation}
+\det{}'(\mathcal K_u)
+=
+3^{-1}4^{-1}
+=
+\frac{1}{12}.
+\label{eq:up_quark_geometric_selection}
+\end{equation}
+
+The down quark is the mass-partition lifted partner of the same
+sector. The lift is supplied by the primitive mass-partition
+invariant \(\chi_M=2\), giving
+
+\begin{equation}
+\det{}'(\mathcal K_d)
+=
+2 \times \,3^{-1}4^{-1}
+=
+\frac{1}{6}.
+\label{eq:down_quark_geometric_selection}
+\end{equation}
+
+Thus the factor separating the lowest quark doublet is
+
+\begin{equation}
+\frac{
+\det{}'(\mathcal K_d)
+}{
+\det{}'(\mathcal K_u)
+}
+=
+2,
+\end{equation}
+
+which is precisely the mass-partition invariant \(\chi_M\).
+
+By Lemma~\ref{lem:heavy_quark_rank_lattice}, the admissible
+resolved heavy-quark rank lattice is completely determined by
+the primitive confinement geometry.
+
+For each rank pair define the closure load
+
+\begin{equation}
+\ell(r_A,r_B)
+=
+r_A+r_B.
+\label{eq:closure_load_definition}
+\end{equation}
+
+The closure loads of the admissible lattice are therefore
+
+\begin{table}[H]
+\centering
+\caption{Closure loads of the admissible heavy-quark rank lattice.}
+\begin{tabular}{cc}
+\toprule
+$(r_A,r_B)$ & $\ell=r_A+r_B$\\
+\midrule
+$(0,1)$ & 1\\
+$(0,2)$ & 2\\
+$(1,1)$ & 2\\
+$(1,2)$ & 3\\
+$(2,1)$ & 3\\
+$(2,2)$ & 4\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The primitive projected-area hierarchy requires the retained
+resolved heavy sectors to reproduce the closure-load sequence
+
+\begin{equation}
+1,
+\qquad
+3,
+\qquad
+4,
+\end{equation}
+
+corresponding to
+
+\begin{equation}
+A_{\rm proj}:A_{\rm lost}:A_{\rm total}
+=
+1:3:4.
+\end{equation}
+
+
+
+
+
+
+
+
+
+The closure load alone does not uniquely determine the
+intermediate heavy-quark sector, since both
+
+\begin{equation}
+(1,2)
+\end{equation}
+
+and
+
+\begin{equation}
+(2,1)
+\end{equation}
+
+possess the same load
+
+\begin{equation}
+\ell=3.
+\end{equation}
+
+This degeneracy is removed by the monotonic closure-growth
+principle. Along the retained heavy-quark hierarchy, both the
+colour rank and projected-area rank must evolve toward the
+terminal colour-area saturation state
+
+\begin{equation}
+(2,2).
+\end{equation}
+
+The candidate transition
+
+\begin{equation}
+(0,1)\longrightarrow(2,1)
+\end{equation}
+
+jumps directly from colour rank \(0\) to colour rank \(2\)
+while leaving the projected-area rank fixed at \(r_B=1\).
+Thus maximal colour activation is reached before the
+projected-area hierarchy has advanced to its resolved value
+\(r_B=2\).
+
+Equivalently, this transition bypasses the admissible
+intermediate colour activation
+
+\begin{equation}
+(1,1).
+\end{equation}
+
+It therefore violates monotonic closure growth. Consequently,
+\((2,1)\) is excluded, leaving
+
+\begin{equation}
+(1,2)
+\end{equation}
+
+as the unique admissible intermediate sector.
+
+
+The unique ordered chain in the admissible rank lattice that
+starts from the lowest projected-area activation, terminates at
+the saturated colour-area rank, and reproduces the primitive
+area-load sequence \(1,3,4\) is
+
+\begin{equation}
+(0,1)
+\longrightarrow
+(1,2)
+\longrightarrow
+(2,2).
+\label{eq:heavy_quark_retained_rank_chain}
+\end{equation}
+
+These are therefore identified with the retained resolved
+heavy-quark closure sectors,
+
+\begin{equation}
+s:\,(0,1),
+\qquad
+c:\,(1,2),
+\qquad
+b:\,(2,2).
+\label{eq:heavy_quark_rank_assignment}
+\end{equation}
+
+\begin{theorem}[Geometric Selection of Quark Closure Sectors]
+\label{thm:geometric_selection_quark_closure_sectors}
+
+Let the quark sector be generated by the primitive closure
+invariants
+
+\begin{equation}
+\chi_M=2,
+\qquad
+\chi_A=3,
+\qquad
+\chi_B=4,
+\end{equation}
+
+arising from the mass partition \(1:2:3\) and the projected-area
+partition \(1:3:4\).
+
+Then the lowest retained colour-deficit sector gives
+
+\begin{equation}
+u:\quad
+\det{}'(\mathcal K_u)
+=
+3^{-1}4^{-1}
+=
+\frac{1}{12},
+\end{equation}
+
+and its mass-partition lifted partner gives
+
+\begin{equation}
+d:\quad
+\det{}'(\mathcal K_d)
+=
+2\,3^{-1}4^{-1}
+=
+\frac{1}{6}.
+\end{equation}
+
+Furthermore, the resolved heavy-quark rank lattice contains the
+unique retained ordered chain
+
+\begin{equation}
+(0,1)
+\longrightarrow
+(1,2)
+\longrightarrow
+(2,2),
+\end{equation}
+
+whose closure loads reproduce the primitive projected-area
+sequence
+
+\begin{equation}
+1,
+\qquad
+3,
+\qquad
+4.
+\end{equation}
+
+Consequently, the resolved heavy-quark determinants are
+
+\begin{equation}
+s:\quad
+\det{}'(\mathcal K_s)=4,
+\end{equation}
+
+\begin{equation}
+c:\quad
+\det{}'(\mathcal K_c)=48,
+\end{equation}
+
+and
+
+\begin{equation}
+b:\quad
+\det{}'(\mathcal K_b)=144.
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+By Corollary~\ref{cor:light_quark_deficit},
+
+\begin{equation}
+\det{}'(\mathcal K_u)
+=
+\chi_A^{-1}\chi_B^{-1}
+=
+3^{-1}4^{-1}
+=
+\frac{1}{12}.
+\end{equation}
+
+The down quark is obtained by the minimal mass-partition lift of
+the same sector. Multiplication by \(\chi_M=2\) gives
+
+\begin{equation}
+\det{}'(\mathcal K_d)
+=
+\chi_M\chi_A^{-1}\chi_B^{-1}
+=
+2\,3^{-1}4^{-1}
+=
+\frac{1}{6}.
+\end{equation}
+
+For the resolved heavy-quark sector, the admissible rank lattice is
+
+\begin{equation}
+(r_A,r_B)
+\in
+\{
+(0,1),
+(0,2),
+(1,1),
+(1,2),
+(2,1),
+(2,2)
+\}.
+\end{equation}
+
+The closure load is \(\ell=r_A+r_B\), so the six candidates have
+loads
+
+\begin{equation}
+1,
+\quad
+2,
+\quad
+2,
+\quad
+3,
+\quad
+3,
+\quad
+4.
+\end{equation}
+
+The projected-area closure geometry requires the retained
+resolved heavy sectors to reproduce the primitive area-load
+sequence \(1,3,4\). The ordered chain beginning at the lowest
+projected-area activation and ending at the saturated
+colour-area rank is
+
+\begin{equation}
+(0,1),
+\qquad
+(1,2),
+\qquad
+(2,2).
+\end{equation}
+
+Their determinants follow from
+
+\begin{equation}
+\det{}'(\mathcal K_i)
+=
+3^{r_A}4^{r_B}.
+\end{equation}
+
+Thus
+
+\begin{equation}
+\det{}'(\mathcal K_s)=3^0 4^1=4,
+\end{equation}
+
+\begin{equation}
+\det{}'(\mathcal K_c)=3^1 4^2=48,
+\end{equation}
+
+and
+
+\begin{equation}
+\det{}'(\mathcal K_b)=3^2 4^2=144.
+\end{equation}
+
+This proves the stated quark-sector determinant selection.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Cumulative Closure Load of the Heavy Quark Sector}
+\label{subsec:cumulative_closure_load_heavy_quarks}
+
+The retained heavy-quark hierarchy
+
+\begin{equation}
+(0,1),
+\qquad
+(1,2),
+\qquad
+(2,2)
+\end{equation}
+
+carries a cumulative closure load obtained by summing the
+individual closure loads of the retained sectors.
+
+\begin{proposition}[Cumulative Heavy-Quark Closure Load]
+\label{prop:cumulative_heavy_quark_load}
+
+Let
+
+\begin{equation}
+\ell_i
+=
+r_{A,i}+r_{B,i}
+\end{equation}
+
+denote the closure load of the \(i\)-th retained heavy-quark
+sector.
+
+Then the cumulative closure load of the retained heavy-quark
+hierarchy is
+
+\begin{equation}
+\ell_{\rm heavy}
+=
+8.
+\end{equation}
+
+\end{proposition}
+
+\begin{proof}
+
+Using the projected-rank sequence
+
+\begin{equation}
+(r_{A,s},r_{B,s})=(0,1),
+\qquad
+(r_{A,c},r_{B,c})=(1,2),
+\qquad
+(r_{A,b},r_{B,b})=(2,2),
+\end{equation}
+
+the individual closure loads are
+
+\begin{equation}
+\ell_s=0+1=1,
+\qquad
+\ell_c=1+2=3,
+\qquad
+\ell_b=2+2=4.
+\end{equation}
+
+Hence
+
+\begin{equation}
+\ell_{\rm heavy}
+=
+\ell_s+\ell_c+\ell_b
+=
+1+3+4
+=
+8.
+\end{equation}
+
+Therefore the cumulative closure load of the retained
+heavy-quark hierarchy is equal to \(8\).
+
+\end{proof}
+
+\begin{definition}[Saturated Heavy-Sector Closure State]
+\label{def:saturated_heavy_sector_closure_state}
+
+A saturated heavy-sector closure state is a state obtained after
+the retained resolved heavy-quark hierarchy has exhausted the
+admissible projected-area rank lattice.
+
+Once the terminal resolved sector
+
+\begin{equation}
+(r_A,r_B)=(2,2)
+\end{equation}
+
+is reached, no further projected-area activation is available.
+Thus the projected-area generator \(\chi_B=4\) cannot contribute
+additional powers beyond the bottom sector.
+
+Any remaining cumulative heavy-sector closure load is therefore
+represented by repeated action of the surviving
+colour-multiplicity generator
+
+\begin{equation}
+\chi_A=3.
+\end{equation}
+
+\end{definition}
+
+\begin{theorem}[Top-Quark Saturation Determinant]
+\label{thm:top_quark_saturation_determinant}
+
+Let the retained heavy-quark hierarchy be
+
+\begin{equation}
+(0,1)
+\longrightarrow
+(1,2)
+\longrightarrow
+(2,2),
+\end{equation}
+
+with closure loads
+
+\begin{equation}
+1,
+\qquad
+3,
+\qquad
+4.
+\end{equation}
+
+The top quark is defined as the saturated heavy-sector closure
+state obtained after exhaustion of the admissible projected-area
+hierarchy.
+
+Then the cumulative heavy-sector closure load is
+
+\begin{equation}
+\ell_{\rm heavy}
+=
+1+3+4
+=
+8,
+\end{equation}
+
+and its determinant is
+
+\begin{equation}
+\det{}'(\mathcal K_t)
+=
+\chi_A^{\ell_{\rm heavy}}
+=
+3^8.
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+The retained heavy-quark hierarchy terminates at
+
+\begin{equation}
+(r_A,r_B)=(2,2),
+\end{equation}
+
+where the projected-area rank has reached its maximal
+admissible value. Hence no further \(\chi_B\) activation is
+available.
+
+The cumulative closure load carried by the retained heavy
+hierarchy is
+
+\begin{equation}
+\ell_{\rm heavy}
+=
+1+3+4
+=
+8.
+\end{equation}
+
+By Definition~\ref{def:saturated_heavy_sector_closure_state},
+the saturated heavy-sector state carries this cumulative load
+through repeated action of the surviving colour generator
+\(\chi_A=3\).
+
+Therefore
+
+\begin{equation}
+\det{}'(\mathcal K_t)
+=
+\chi_A^{\ell_{\rm heavy}}
+=
+3^8.
+\end{equation}
+
+\end{proof}
+
+The saturated heavy-sector closure state is not an additional
+resolved rank-lattice point. The admissible resolved
+colour-area hierarchy terminates uniquely at
+
+\begin{equation}
+(r_A,r_B)=(2,2),
+\end{equation}
+
+which exhausts the projected-area rank lattice.
+
+Consequently no further resolved heavy-quark sectors exist
+within the closure geometry. The only remaining heavy-sector
+configuration is the saturated closure state obtained by
+accumulation of the full retained heavy-quark closure load
+
+\begin{equation}
+\ell_{\rm heavy}=8.
+\end{equation}
+
+By Theorem~\ref{thm:top_quark_saturation_determinant}, this
+state carries determinant
+
+\begin{equation}
+\det{}'(\mathcal K_{\rm sat})
+=
+3^8.
+\end{equation}
+
+The saturated state is therefore the unique heavy-sector closure
+configuration lying beyond the resolved hierarchy. Since the
+resolved hierarchy already accounts for the strange, charm, and
+bottom sectors, the saturated state provides the unique
+remaining heavy-quark sector admitted by the closure geometry.
+
+Accordingly, the saturated closure state is identified with the
+top quark.
+
+Thus the top quark is not introduced as an independent lattice
+sector. It is the unique saturated closure state remaining after
+the resolved heavy-quark hierarchy has been exhausted.
+
+
+The resolved heavy-quark determinants satisfy
+
+\begin{equation}
+\det{}'(\mathcal K_i)
+=
+3^{r_A}4^{r_B},
+\label{eq:heavy_determinant_rule}
+\end{equation}
+
+where \(\chi_A=3\) encodes colour-multiplicity activation and
+\(\chi_B=4\) encodes projected-area activation.
+
+For the retained heavy-quark hierarchy,
+
+\begin{equation}
+s:(0,1),
+\qquad
+c:(1,2),
+\qquad
+b:(2,2),
+\end{equation}
+
+the corresponding determinants are
+
+\begin{equation}
+\det{}'(\mathcal K_s)=4,
+\qquad
+\det{}'(\mathcal K_c)=48,
+\qquad
+\det{}'(\mathcal K_b)=144.
+\end{equation}
+
+By Theorem~\ref{thm:top_quark_saturation_determinant}, the top
+quark is identified with the saturated heavy-sector closure
+state. Since the projected-area hierarchy is exhausted at the
+bottom sector, the cumulative heavy-sector closure load is
+represented entirely through repeated action of the colour
+generator \(\chi_A=3\). Hence
+
+\begin{equation}
+\det{}'(\mathcal K_t)
+=
+3^8.
+\label{eq:top_determinant_from_cumulative_load}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Quark Mass Spectrum}
+\label{subsec:quark_mass_spectrum}
+
+The geometric selection theorem yields
+
+\[
+\det{}'(\mathcal K_u)=\frac1{12},
+\qquad
+\det{}'(\mathcal K_d)=\frac1{6},
+\qquad
+\det{}'(\mathcal K_s)=4,
+\]
+
+\[
+\det{}'(\mathcal K_c)=48,
+\qquad
+\det{}'(\mathcal K_b)=144,
+\qquad
+\det{}'(\mathcal K_t)=3^8.
+\]
+
+Applying the spectral closure determinant mass theorem,
+
+\[
+m_i
+=
+M_{\rm surf}
+\det{}'(\mathcal K_i),
+\]
+
+with
+
+\[
+M_{\rm surf}
+=
+27.29~{\rm MeV},
+\]
+
+gives
+
+\[
+m_u
+=
+2.27~{\rm MeV},
+\]
+
+\[
+m_d
+=
+4.55~{\rm MeV},
+\]
+
+\[
+m_s
+=
+109.2~{\rm MeV},
+\]
+
+\[
+m_c
+=
+1.31~{\rm GeV},
+\]
+
+\[
+m_b
+=
+3.93~{\rm GeV},
+\]
+
+\[
+m_t
+=
+179~{\rm GeV}.
+\]
+
+A consolidated comparison of the predicted and experimental
+quark masses is provided in
+Appendix~\ref{app:summary_tables}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Strange-Quark Transition Sector}
+\label{subsec:strange_quark_transition_sector}
+
+The strange quark occupies a distinguished position within the
+closure hierarchy. It is the first retained resolved
+colour-area sector,
+
+\begin{equation}
+(r_A,r_B)=(0,1),
+\end{equation}
+
+and therefore marks the transition between the light-quark
+closure-deficit regime and the resolved heavy-quark hierarchy.
+
+Because the strange sector lies nearest to this transition, it
+is expected to receive the largest boundary-resolution
+corrections to the leading-order determinant law. In the
+present framework, the strange quark is therefore the sector
+most sensitive to higher-order closure effects not included in
+the leading-order construction.
+
+This expectation is qualitatively consistent with the fact that
+the experimental strange-quark mass is more strongly affected by
+QCD running and confinement-scale effects than the charged
+leptons and exhibits larger uncertainties than the heavier
+charm, bottom, and top sectors.
+
+The framework therefore predicts that the strange sector should
+display the largest fractional deviation from the leading-order
+closure determinant relation among the retained resolved
+quark sectors. Future refinements of the closure geometry should
+primarily manifest themselves through corrections to the strange
+sector before affecting the higher resolved states.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Neutral Closure Sector}
+\label{sec:neutral_closure_sector}
+
+The charged-lepton and quark spectra were obtained from
+closure-selected projections of the primitive closure kernel
+
+\begin{equation}
+\mathcal K =
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+together with the corresponding projected-rank structure of the
+retained eigenspaces.
+
+The neutral sector is generated by the same primitive closure
+kernel but differs fundamentally from the charged sectors in one
+respect. Neutral closure states do not possess a resolved
+charged boundary contribution and therefore do not inherit the
+surface mass normalization scale \(M_{\rm surf}\) introduced in
+Section~2.
+
+Instead, the neutral sector is associated with closure modes
+whose normalization is determined by the vacuum component of the
+confinement geometry established in SFT Paper~I
+\cite{Egbon2025I}.
+
+Consequently, the neutral hierarchy is governed by the same
+closure determinant framework,
+
+\begin{equation}
+\det{}'(\mathcal K_i) =
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i},
+\end{equation}
+
+but with a different sector normalization scale.
+
+The resulting neutral spectrum contains the three observed
+neutrino sectors together with a sequence of higher neutral
+closure states.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Neutral Closure Sequence}
+\label{subsec:neutral_closure_sequence}
+
+The neutral sector corresponds to closure-selected eigenspaces
+for which the charged boundary contribution vanishes.
+
+Accordingly, the neutral hierarchy begins from the closure
+ground state rather than from the lowest retained charged
+sector.
+
+Let
+
+\begin{equation}
+E_{\nu}^{(i)}
+\end{equation}
+
+denote a retained neutral closure eigenspace.
+
+The corresponding projected kernel is
+
+\begin{equation}
+\mathcal K_{\nu}^{(i)} = 
+P_{\rm cl}^{(i)}
+\mathcal K
+P_{\rm cl}^{(i)}
+\Big|*{E*{\nu}^{(i)}}.
+\end{equation}
+
+The associated neutral determinant is therefore
+
+\begin{equation}
+\det{}'
+!\left(
+\mathcal K_{\nu}^{(i)}
+\right) = 
+2^{\alpha_i}
+3^{\beta_i}
+4^{\gamma_i}.
+\label{eq:neutral_determinant}
+\end{equation}
+
+Unlike the charged sectors, the neutral hierarchy is generated
+by successive closure activations of the primitive directions of
+the kernel. Consequently, the neutral sequence is determined by
+the ordered appearance of the primitive closure contributions
+within the retained neutral eigenspaces.
+
+The first retained neutral state corresponds to the closure
+ground mode, while higher neutral states arise from successive
+activation of the primitive closure directions. The resulting
+determinant sequence will be derived in the following subsection.
+
+This sequence forms the basis of the neutrino hierarchy and of
+the higher neutral closure states predicted by the present
+framework.
+
+%%%%%%%%%%%%%==================================================================================
+
+\subsection{Derivation of the Neutral Closure Sequence}
+\label{subsec:neutral_sequence_derivation}
+
+The neutral sector differs from the charged sectors because the
+corresponding closure modes do not couple directly to the
+projected charged boundary. Consequently, the neutral hierarchy
+is generated by a distinct projection of the primitive closure
+kernel.
+
+The primitive closure kernel established in Section~4 is
+
+\begin{equation}
+\mathcal K =
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+with primitive closure spectrum
+
+\begin{equation}
+\operatorname{spec}(\mathcal K) =
+{2,3,4}.
+\end{equation}
+
+For charged sectors, the retained eigenspaces resolve the
+projected confinement boundary directly. Neutral sectors,
+however, are insensitive to charge, colour, and projected-boundary
+orientation. At leading order they therefore sample only the
+compact isotropic closure geometry.
+
+Accordingly, the leading neutral operator is taken to be the
+scalar closure operator
+
+\begin{equation}
+\mathcal O_{\rm n}^{(0)} =
+-\Delta_{S^3},
+\label{eq:neutral_scalar_operator}
+\end{equation}
+
+acting on the compact closure manifold \(S^3(R_c)\).
+
+The corresponding scalar harmonics satisfy
+
+\begin{equation}
+-\Delta_{S^3}Y_n =
+\frac{n(n+2)}{R_c^2}Y_n,
+\qquad
+n=0,1,2,\ldots .
+\end{equation}
+
+Therefore the dimensionless neutral eigenvalues are
+
+\begin{equation}
+\widetilde{\Lambda}_n = R_c^2\lambda_n
+= n(n+2).
+\end{equation}
+
+The first three neutral eigenvalues are
+
+\begin{equation}
+\widetilde{\Lambda}_0 = 
+0,
+\qquad
+\widetilde{\Lambda}_1 =
+3,
+\qquad
+\widetilde{\Lambda}_2 =
+8.
+\label{eq:neutral_unweighted_spectrum}
+\end{equation}
+
+These eigenvalues represent the unweighted neutral closure
+spectrum.
+
+The neutral projection must then be combined with the nested
+boundary structure of the confinement geometry derived in
+Section~2,
+
+\begin{equation}
+A_{\rm proj}
+:
+A_{\rm excl}
+:
+A_{\rm sph} =
+1
+:
+3
+:
+4.
+\end{equation}
+
+Neutral modes resolve this hierarchy through the successive
+boundary-resolution sequence
+
+\begin{equation}
+A_{\rm sph}
+\longrightarrow
+A_{\rm excl}
+\longrightarrow
+A_{\rm proj}.
+\label{eq:neutral_resolution_chain}
+\end{equation}
+
+The first neutral resolution weight is therefore
+
+\begin{equation}
+\omega_1 =
+\frac{A_{\rm sph}}
+{A_{\rm excl}} =
+\frac{4}{3},
+\end{equation}
+
+while the second is
+
+\begin{equation}
+\omega_2 =
+\frac{A_{\rm excl}}
+{A_{\rm proj}} =
+3.
+\end{equation}
+
+Applying these closure-resolution weights to the neutral
+eigenvalues gives
+
+\begin{equation}
+\Lambda_{\nu_1}^{\rm eff} =
+0,
+\end{equation}
+
+\begin{equation}
+\Lambda_{\nu_2}^{\rm eff} =
+\frac{4}{3}
+\times
+3
+=
+4,
+\end{equation}
+
+and
+
+\begin{equation}
+\Lambda_{\nu_3}^{\rm eff} =
+3
+\times
+8
+=
+24.
+\end{equation}
+
+Hence the neutral closure sequence is
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24.
+\label{eq:neutral_closure_sequence}
+\end{equation}
+
+We summarize the result as follows.
+
+\begin{theorem}[Selection of the Active Neutral Closure Spectrum]
+\label{thm:active_neutral_closure_selection}
+
+Let the neutral sector be generated by the scalar projection of
+the primitive closure kernel on the compact isotropic closure
+geometry together with the successive boundary-resolution chain
+
+\begin{equation}
+A_{\rm sph}
+\longrightarrow
+A_{\rm excl}
+\longrightarrow
+A_{\rm proj}.
+\end{equation}
+
+Then the unique retained active neutral closure spectrum is
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff}
+=
+0,
+\qquad
+4,
+\qquad
+24.
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+The scalar neutral closure operator yields the unweighted
+neutral spectrum
+
+\begin{equation}
+0,
+\qquad
+3,
+\qquad
+8.
+\end{equation}
+
+Application of the successive boundary-resolution weights
+
+\begin{equation}
+\omega_1=\frac43,
+\qquad
+\omega_2=3
+\end{equation}
+
+gives
+
+\begin{equation}
+0,
+\qquad
+\frac43\times3=4,
+\qquad
+3\times8=24.
+\end{equation}
+
+Hence
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff}
+=
+0,
+\qquad
+4,
+\qquad
+24.
+\end{equation}
+
+\end{proof}
+
+Thus the active neutral spectrum
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24
+\end{equation}
+
+is not introduced as an independent assumption. It is selected
+by the scalar neutral closure spectrum together with the
+successive boundary-resolution hierarchy
+
+\begin{equation}
+A_{\rm sph}
+\longrightarrow
+A_{\rm excl}
+\longrightarrow
+A_{\rm proj}.
+\end{equation}
+
+The electroweakly active neutral sector is therefore
+
+\begin{equation}
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\{\nu_1,\nu_2,\nu_3\},
+\end{equation}
+
+corresponding to the three retained neutral closure states
+associated with
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24.
+\end{equation}
+
+Higher neutral closure excitations belong to the neutral tower
+discussed below and are not retained as leading-order active
+neutrino states.
+
+%%%%%%===================================================================
+
+\subsection{Derivation of the Vacuum--Curvature Energy Scale}
+\label{subsec:derivation_Evac}
+
+The neutral-sector mass map is normalized by the SFT
+vacuum--curvature energy scale \(E_{\rm vac}\). This scale is
+not fitted to neutrino data. It is obtained from the
+closure-vacuum energy density inherited from SFT Paper~I
+\cite{Egbon2025I}.
+
+SFT Paper~I gives the present closure-vacuum mass density
+
+\begin{equation}
+\rho_{{\rm DE},0} =
+5.95765\times10^{-27}\ {\rm kg,m^{-3}}.
+\end{equation}
+
+The corresponding vacuum energy density is
+
+\begin{equation}
+u_{{\rm DE},0} =
+\rho_{{\rm DE},0}c^2.
+\end{equation}
+
+Substituting the numerical value gives
+
+\begin{equation}
+u_{{\rm DE},0} = 
+(5.95765\times10^{-27})
+(2.99792458\times10^8)^2
+\ {\rm J,m^{-3}},
+\end{equation}
+
+and therefore
+
+\begin{equation}
+u_{{\rm DE},0} = 
+5.35447\times10^{-10}\ {\rm J,m^{-3}}.
+\label{eq:ude0}
+\end{equation}
+
+A quantum vacuum energy scale \(E_{\rm vac}\) is related to an
+energy density by
+
+\begin{equation}
+u_{{\rm DE},0} =
+\frac{E_{\rm vac}^{4}}{(\hbar c)^3}.
+\label{eq:vacuum_density_scale}
+\end{equation}
+
+Hence
+
+\begin{equation}
+E_{\rm vac}
+=
+\left[
+u_{{\rm DE},0}
+(\hbar c)^3
+\right]^{1/4}.
+\label{eq:Evac_from_density}
+\end{equation}
+
+Using
+
+\begin{equation}
+\hbar c
+=
+3.16152677\times10^{-26}\ {\rm J\,m},
+\end{equation}
+
+one obtains
+
+\begin{equation}
+E_{\rm vac}
+=
+\left[
+(5.35447\times10^{-10})
+(3.16152677\times10^{-26})^3
+\right]^{1/4}
+\ {\rm J}.
+\end{equation}
+
+Converting to electron volts gives
+
+\begin{equation}
+E_{\rm vac}
+=
+2.252\times10^{-3}\ {\rm eV}.
+\end{equation}
+
+Therefore
+
+\begin{equation}
+E_{\rm vac}
+\simeq
+2.25\ {\rm meV}.
+\label{eq:Evac_numerical}
+\end{equation}
+
+Since SFT Paper~I gives the vacuum evolution law
+
+\begin{equation}
+\rho_{\rm DE}(a)
+=
+\rho_{{\rm DE},0}
+a^{3(1-\alpha)},
+\end{equation}
+
+the corresponding vacuum--curvature energy scale evolves as
+
+\begin{equation}
+E_{\rm vac}(a)
+=
+E_{{\rm vac},0}
+a^{\frac{3(1-\alpha)}{4}}.
+\end{equation}
+
+For \(\alpha\simeq1\), this evolution is extremely weak.
+Thus \(E_{\rm vac}\) may be treated, to leading order, as a
+closure-vacuum invariant rather than as a freely fitted neutrino
+parameter.
+
+The neutral-sector mass map is therefore
+
+\begin{equation}
+m_{\nu_i}
+=
+E_{\rm vac}
+\Lambda_{\nu_i}^{\rm eff},
+\label{eq:neutrino_mass_map}
+\end{equation}
+
+where \(\Lambda_{\nu_i}^{\rm eff}\) denotes the effective
+neutral closure eigenvalue.
+
+%%%%%%%%====================================================
+
+\subsection{Neutrino Mass Estimates}
+\label{subsec:neutrino_mass_estimates}
+
+The neutral-sector mass map derived in the previous subsection is
+
+\begin{equation}
+m_{\nu_i}
+=
+E_{\rm vac}
+\Lambda_{\nu_i}^{\rm eff},
+\label{eq:neutrino_mass_map_repeat}
+\end{equation}
+
+where
+
+\begin{equation}
+E_{\rm vac}
+=
+2.25~{\rm meV},
+\end{equation}
+
+and the effective neutral closure eigenvalues are
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff} =
+{0,4,24}.
+\label{eq:neutral_sequence_repeat}
+\end{equation}
+
+Substituting the first neutral closure eigenvalue gives
+
+\begin{equation}
+m_{\nu_1} = (2.25~{\rm meV})(0) =
+0.
+\end{equation}
+
+Therefore
+
+\begin{equation}
+m_{\nu_1} =
+0.
+\label{eq:mnu1}
+\end{equation}
+
+At leading closure order, the vanishing ground-state
+eigenvalue
+
+\begin{equation}
+\Lambda_{\nu_1}^{\rm eff}=0
+\end{equation}
+
+produces a massless lightest neutrino.
+
+Higher-order neutral-closure corrections may perturb the ground
+state eigenvalue and generate a small non-zero mass,
+
+\begin{equation}
+m_{\nu_1}
+=
+\delta m_{\nu},
+\qquad
+|\delta m_{\nu}|
+\ll
+m_{\nu_2}.
+\label{eq:mnu1_correction}
+\end{equation}
+
+The second neutral closure eigenvalue yields
+
+\begin{equation}
+m_{\nu_2}
+=
+(2.25~{\rm meV})(4)
+=
+9.0~{\rm meV}.
+\end{equation}
+
+Hence
+
+\begin{equation}
+m_{\nu_2} =
+9.0~{\rm meV}.
+\label{eq:mnu2}
+\end{equation}
+
+Similarly, the third neutral closure eigenvalue gives
+
+\begin{equation}
+m_{\nu_3} = (2.25~{\rm meV})(24)
+=
+54.0~{\rm meV}.
+\end{equation}
+
+Thus
+
+\begin{equation}
+m_{\nu_3} =
+54.0~{\rm meV}.
+\label{eq:mnu3}
+\end{equation}
+
+The resulting neutrino spectrum is therefore
+
+\begin{equation}
+\boxed{
+m_{\nu_1} =
+0,
+\qquad
+m_{\nu_2} =
+9.0~{\rm meV},
+\qquad
+m_{\nu_3} =
+54.0~{\rm meV}.
+}
+\label{eq:sft_neutrino_spectrum}
+\end{equation}
+
+The corresponding neutrino mass sum is
+
+\begin{equation}
+\Sigma m_\nu = 
+m_{\nu_1}
++
+m_{\nu_2}
++
+m_{\nu_3} = 
+0.063~{\rm eV}.
+\end{equation}
+
+This value lies below current cosmological upper bounds on the
+sum of neutrino masses derived from CMB and large-scale
+structure observations \cite{PDG2024,Planck2018}. The predicted
+mass sum is therefore consistent with existing cosmological
+constraints.
+
+Hence
+
+\begin{equation}
+\Sigma m_\nu = 
+0.063~{\rm eV}.
+\label{eq:neutrino_mass_sum}
+\end{equation}
+
+The hierarchy predicted by the closure spectrum is therefore
+
+\begin{equation}
+m_{\nu_1}
+<
+m_{\nu_2}
+<
+m_{\nu_3},
+\end{equation}
+
+corresponding to a normal neutrino hierarchy.
+
+Within the present framework, the lightest neutrino is identified
+with the neutral closure ground state and is therefore massless
+at leading order. Small non-zero corrections may arise from
+higher-order closure effects not included in the present
+construction.
+
+We summarize the result as follows.
+
+\begin{theorem}[SFT Neutrino Mass Spectrum]
+\label{thm:sft_neutrino_spectrum}
+
+Let the neutral closure sequence be
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff} =
+{0,4,24},
+\end{equation}
+
+and let the neutral vacuum normalization scale be
+
+\begin{equation}
+E_{\rm vac} =
+2.25~{\rm meV}.
+\end{equation}
+
+Then the leading-order neutrino masses are
+
+\begin{equation}
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV}.
+\end{equation}
+
+Higher-order neutral-closure corrections may generate a small
+non-zero value of \(m_{\nu_1}\) while preserving
+
+\begin{equation}
+m_{\nu_1}
+\ll
+m_{\nu_2}
+<
+m_{\nu_3}.
+\end{equation}
+
+\end{theorem}
+
+The neutrino hierarchy is therefore generated directly from the
+neutral closure spectrum without introducing particle-specific
+mass parameters.
+
+
+%%%%%%%%%===============================================================
+
+\begin{proposition}[Higher Neutral Closure Tower]
+\label{prop:higher_neutral_tower}
+
+Let
+
+\begin{equation}
+\Lambda_{{\rm N},2}
+=
+24
+\end{equation}
+
+denote the first fully activated neutral closure state.
+
+Then all higher neutral closure eigenvalues are generated by
+
+\begin{equation}
+\Lambda_{{\rm N},n+1}
+=
+4\times
+\Lambda_{{\rm N},n},
+\qquad
+n\geq2.
+\label{eq:higher_neutral_recursion}
+\end{equation}
+
+Equivalently,
+
+\begin{equation}
+\Lambda_{{\rm N},n}
+=
+24\times4^{\,n-2},
+\qquad
+n\geq2.
+\label{eq:neutral_tower}
+\end{equation}
+
+\end{proposition}
+
+The first higher neutral eigenvalues are therefore
+
+\begin{equation}
+\Lambda_{{\rm N},3}
+=
+96,
+\end{equation}
+
+\begin{equation}
+\Lambda_{{\rm N},4}
+=
+384,
+\end{equation}
+
+and
+
+\begin{equation}
+\Lambda_{{\rm N},5}
+=
+1536.
+\end{equation}
+
+%%%%%%%%%%%=================================================================================
+
+\subsection{Neutrino Oscillation Consistency Check} \label{subsec:neutrino_oscillation_consistency} 
+
+The neutral closure construction developed above yields the leading-order neutrino mass spectrum 
+
+\begin{equation} \boxed{ m_{\nu_1} = 0, \qquad m_{\nu_2} = 9.0~{\rm meV}, \qquad m_{\nu_3} = 54.0~{\rm meV}. } \label{eq:sft_neutrino_spectrum_final}
+\end{equation} 
+
+The corresponding neutrino mass sum is 
+
+\begin{equation} \Sigma m_\nu = m_{\nu_1} + m_{\nu_2} + m_{\nu_3} = 0.063~{\rm eV}. \end{equation}
+
+These values follow directly from the neutral closure eigenvalue sequence 
+
+\begin{equation} \Lambda_\nu = \{0,4,24\}, 
+\end{equation}
+together with the neutral vacuum-curvature normalization scale
+
+\begin{equation} E_{\rm vac} = 2.252~{\rm meV}. 
+\end{equation}
+
+The corresponding mass-squared splittings are
+
+\begin{equation} \Delta m_{21}^2 = m_{\nu_2}^2 - m_{\nu_1}^2 = (9.0\times10^{-3})^2 = 8.10\times10^{-5}\ {\rm eV}^2, \label{eq:sft_delta21} \end{equation} 
+
+and 
+
+\begin{equation} \Delta m_{31}^2 = m_{\nu_3}^2 - m_{\nu_1}^2 = (5.40\times10^{-2})^2 = 2.92\times10^{-3}\ {\rm eV}^2. \label{eq:sft_delta31} \end{equation} 
+
+These predictions may be compared with current global neutrino oscillation analyses. The latest NuFIT global analysis for normal ordering gives \cite{NuFIT2024,NuFITWeb}
+
+\begin{equation}
+\Delta m_{21,\rm exp}^{2} = 
+7.50\times10^{-5}
+\ {\rm eV}^{2},
+\end{equation}
+
+and
+
+\begin{equation}
+\Delta m_{31,\rm exp}^{2} =
+2.529\times10^{-3}
+\ {\rm eV}^{2}.
+\end{equation}
+
+The SFT predictions therefore reproduce
+
+\begin{itemize}
+\item the normal mass ordering;
+\item the existence of a nearly massless first neutrino;
+\item the hierarchy
+(
+\Delta m_{31}^{2}
+\gg
+\Delta m_{21}^{2};
+)
+\item oscillation mass-squared splittings that agree with current global-fit values to within approximately (8.0%) and (15.4%), respectively.
+\end{itemize}
+
+To quantify the agreement,
+
+\begin{equation}
+\frac{
+8.10\times10^{-5}
+-
+7.50\times10^{-5}
+}{
+7.50\times10^{-5}
+}
+=
+0.080
+\simeq
+8.0\%.
+\end{equation}
+
+while
+
+\begin{equation}
+\frac{
+2.916\times10^{-3}
+-
+2.529\times10^{-3}
+}{
+2.529\times10^{-3}
+}
+=
+0.153
+\simeq
+15.4\%.
+\end{equation}
+
+Thus the leading-order closure spectrum reproduces the observed oscillation scales at a level significantly better than order-of-magnitude agreement, despite introducing no oscillation-sector fitting parameters.
+
+It is important to emphasize the distinction between the neutrino mass spectrum and the neutrino oscillation problem. The present paper derives the neutral closure eigenvalues and hence the leading-order neutrino masses. Oscillation experiments probe the propagation of flavour states and therefore depend not only on the neutral closure eigenvalues but also on the structure of the active--hidden neutral sector.
+
+The analysis of the preceding sections shows that the leading neutral closure operator is diagonal in the neutral harmonic basis and therefore determines the mass spectrum directly. The derivation of oscillation corrections requires a more complete description of the neutral sector, including the geometric origin of active--hidden neutral-state interactions.
+
+Accordingly, Eqs.~\eqref{eq:sft_delta21} and
+\eqref{eq:sft_delta31} should be interpreted as leading-order SFT predictions.
+
+Consequently, the neutrino sector of the present paper establishes a first-principles prediction for the leading neutrino mass hierarchy and oscillation scales, together with a framework for future higher-order neutral-sector corrections.
+
+\paragraph{Limitations of the Leading-Order Neutral Spectrum.}
+
+The leading-order neutral closure sequence
+
+\[
+\mathcal S
+=
+\{0,4,24\}
+\]
+
+successfully reproduces the observed normal neutrino hierarchy,
+the correct hierarchy of oscillation scales, and mass-squared
+splittings that lie close to current experimental values.
+However, the remaining deviations from the measured oscillation
+parameters indicate that the leading-order neutral closure
+spectrum does not yet provide a complete description of the
+physical neutrino sector.
+
+Within the present framework, the sequence
+\(\{0,4,24\}\) should therefore be interpreted as the
+lowest-order approximation to the neutral closure spectrum.
+A more complete treatment of the neutral sector may require
+additional geometric structure beyond the leading closure
+approximation, including the derivation of active--hidden
+neutral-sector interactions and associated flavour-propagation
+effects.
+
+The derivation of such corrections lies beyond the scope of the
+present work and is left for future investigation.
+
+
+%%%%%%%%%%%====================================================================
+
+\subsection{Active and Hidden Neutral Closure Sectors}
+\label{subsec:active_hidden_neutral_sectors}
+
+The neutral closure spectrum derived in the previous sections
+contains the three observed neutrino states together with a
+tower of higher neutral closure excitations.
+
+Within the present framework, the neutral state space is
+decomposed into an active electroweak sector and a hidden
+neutral sector according to
+
+\begin{equation}
+\mathcal H_{\rm neutral} = \mathcal H_{\rm active}
+\oplus
+\mathcal H_{\rm hidden}.
+\label{eq:Hneutral_decomposition}
+\end{equation}
+
+The active sector contains the three observed neutrino states,
+
+\begin{equation}
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\left\{
+\nu_1,
+\nu_2,
+\nu_3
+\right\}.
+\label{eq:Hactive}
+\end{equation}
+
+while the hidden sector contains higher neutral closure
+excitations,
+
+\begin{equation}
+\mathcal H_{\rm hidden}
+=
+\operatorname{span}
+\left\{
+X_1,
+X_2,
+\ldots
+\right\}.
+\label{eq:Hhidden}
+\end{equation}
+
+The existence of exactly three active neutrinos is attributed
+to the closure-selection structure already encountered in the
+charged-generation sector.
+
+In particular, the boundary-chain operator introduced in
+Section~5 possesses exactly three resolved electroweak
+projection directions. These define the electroweak projection
+
+\begin{equation}
+\mathbf P_{\rm EW}
+:
+\mathcal H_{\rm neutral}
+\rightarrow
+\mathcal H_{\rm active}.
+\label{eq:PEW_definition}
+\end{equation}
+
+Consequently,
+
+\begin{equation}
+\mathbf P_{\rm EW}
+\mathcal H_{\rm neutral}
+=
+\mathcal H_{\rm active}.
+\label{eq:PEW_active}
+\end{equation}
+
+Only the states
+
+\[
+\nu_1,
+\qquad
+\nu_2,
+\qquad
+\nu_3
+\]
+
+couple directly to the electroweak sector.
+
+The higher neutral closure states belong to the hidden sector
+and satisfy
+
+\begin{equation}
+\mathbf P_{\rm EW}X_i = 0.
+\label{eq:hidden_projection}
+\end{equation}
+
+Therefore the hidden neutral states do not contribute to the
+observed electroweak neutral-current width and are not
+interpreted as additional active neutrino generations.
+
+The lowest hidden neutral closure excitation is denoted by
+
+\begin{equation}
+X.
+\end{equation}
+
+Within the present framework, the corresponding mass estimate
+is
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\label{eq:mx_prediction}
+\end{equation}
+
+The state (X) is not interpreted as a fourth active neutrino.
+Instead, it belongs to the hidden neutral closure sector and
+therefore satisfies
+
+\begin{equation}
+\mathbf P_{\rm EW}X =
+0.
+\end{equation}
+
+If electrically neutral, colour neutral, and weakly coupled,
+the state (X) provides a natural dark-sector candidate.
+
+We summarize the result as follows.
+
+\begin{theorem}[Active and Hidden Neutral Closure Sectors]
+\label{thm:active_hidden_neutral}
+
+The neutral closure space decomposes as
+
+\begin{equation}
+\mathcal H_{\rm neutral} = 
+\mathcal H_{\rm active}
+\oplus
+\mathcal H_{\rm hidden}.
+\end{equation}
+
+The active sector contains exactly three electroweak-coupled
+neutrino states,
+
+\begin{equation}
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\{\nu_1,\nu_2,\nu_3\}.
+\end{equation}
+
+while all higher neutral closure states belong to the hidden
+sector,
+
+\begin{equation}
+\mathcal H_{\rm hidden}.
+\end{equation}
+
+The lowest hidden neutral closure excitation is predicted to
+have mass
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\end{equation}
+
+\end{theorem}
+
+%%%%%%%%%%%%==============================================================================
+
+\subsection{Derivation of the Hidden Neutral Dark Sector}
+\label{subsec:hidden_neutral_dark_sector}
+
+The decomposition
+
+\begin{equation}
+\mathcal H_{\rm neutral} =
+\mathcal H_{\rm active}
+\oplus
+\mathcal H_{\rm hidden}
+\label{eq:Hneutral_decomposition_repeat}
+\end{equation}
+
+implies that the neutral closure spectrum contains states that
+are not projected into the electroweak-active neutrino sector.
+
+The active sector is selected by the electroweak projection
+operator
+
+\begin{equation}
+\mathbf P_{\rm EW}
+:
+\mathcal H_{\rm neutral}
+\rightarrow
+\mathcal H_{\rm active},
+\end{equation}
+
+with
+
+\begin{equation}
+\mathbf P_{\rm EW}
+\mathcal H_{\rm neutral} =
+\mathcal H_{\rm active}.
+\end{equation}
+
+Consequently, the hidden neutral sector is identified with the
+kernel of the electroweak projection,
+
+\begin{equation}
+\mathcal H_{\rm hidden} =
+\ker
+\left(
+\mathbf P_{\rm EW}
+\right).
+\label{eq:hidden_kernel}
+\end{equation}
+
+Any hidden neutral closure state therefore satisfies
+
+\begin{equation}
+\mathbf P_{\rm EW}X_i =
+0.
+\label{eq:hidden_projection_repeat}
+\end{equation}
+
+Such states do not couple as active electroweak neutrinos and
+therefore do not contribute to the observed neutral-current
+width.
+
+The neutral closure sequence derived earlier may be written
+schematically as
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24,
+\qquad
+X,
+\qquad
+\ldots
+\label{eq:neutral_sequence_hidden}
+\end{equation}
+
+where the first three admissible modes correspond to the active
+neutrino sector and the next admissible neutral closure
+excitation belongs to the hidden sector.
+
+We denote the lowest hidden neutral closure excitation by
+
+\begin{equation}
+X.
+\end{equation}
+
+Using the neutral-sector closure normalization developed in the
+preceding sections yields the mass estimate
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\label{eq:mx_prediction}
+\end{equation}
+
+The state (X) is not interpreted as a fourth active neutrino.
+Instead, it belongs to the hidden neutral closure sector and
+therefore satisfies
+
+\begin{equation}
+\mathbf P_{\rm EW} =
+0.
+\end{equation}
+
+If electrically neutral, colour neutral, and weakly coupled,
+the state (X) provides a natural dark-sector candidate.
+
+The resulting interpretation is therefore not the existence of
+a fourth active neutrino generation, but the existence of a
+hidden neutral closure sector containing electroweak-singlet
+closure excitations.
+
+We summarize the result as follows.
+
+\begin{theorem}[Hidden Neutral Closure Sector]
+\label{thm:hidden_neutral_sector}
+
+The neutral closure space decomposes as
+
+\begin{equation}
+\mathcal H_{\rm neutral} = 
+\mathcal H_{\rm active}
+\oplus
+\mathcal H_{\rm hidden}.
+\end{equation}
+
+The hidden sector is given by
+
+\begin{equation}
+\mathcal H_{\rm hidden} =
+\ker
+\left(
+\mathbf P_{\rm EW}
+\right),
+\end{equation}
+
+and contains neutral closure excitations satisfying
+
+\begin{equation}
+\mathbf P_{\rm EW}X_i =
+0.
+\end{equation}
+
+The lowest hidden neutral closure excitation is predicted to
+have mass
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\end{equation}
+
+\end{theorem}
+
+The hidden neutral closure sector therefore provides a natural
+geometric origin for sterile neutral states and supplies a
+candidate dark-sector excitation within the SFT framework.
+
+
+Tables summarizing the neutrino spectrum, oscillation
+observables, hidden neutral state, and higher neutral closure
+tower are collected in
+Appendix~\ref{app:summary_tables}.
+
+%%%%%%%=================================================================================
+
+\subsection{Global Closure Compatibility and Sector Exponent Assignments}
+\label{subsec:global_closure_admissibility}
+
+The preceding sections derived the charged-lepton, quark, and
+neutral spectra as different projections of the same primitive
+closure kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+with primitive invariants
+
+\begin{equation}
+\chi_M=2,
+\qquad
+\chi_A=3,
+\qquad
+\chi_B=4.
+\end{equation}
+
+The purpose of this subsection is to summarize why the retained
+sector exponent assignments are not independent numerical
+choices. They arise from the admissible closure mechanisms
+available to the primitive kernel.
+
+\begin{definition}[Closure-Compatible Mechanism]
+\label{def:closure_compatible_mechanism}
+
+A closure mechanism generated by \(\mathcal K\) is said to be
+closure-compatible if it satisfies the following requirements:
+
+\begin{enumerate}
+\item it preserves the primitive closure invariants
+\(\chi_M,\chi_A,\chi_B\);
+\item it acts through a projection of the primitive closure
+kernel onto a retained particle sector;
+\item it respects monotonic closure growth whenever the sector
+is rank ordered;
+\item it uses the minimal unresolved predecessor when the sector
+lies below the first resolved colour-area activation;
+\item it uses saturation when a retained hierarchy exhausts its
+admissible rank lattice;
+\item it uses the scalar neutral closure projection when the
+sector is neutral and does not couple to the charged
+confinement boundary.
+\end{enumerate}
+
+\end{definition}
+
+%%%%%%%============================================================
+
+\begin{lemma}[Exhaustion of Primitive Closure Configurations]
+\label{lem:exhaustion_of_closure_configurations}
+
+Let a retained particle sector be generated by a projection of
+the primitive closure kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4).
+\end{equation}
+
+Every retained particle sector belongs to one of the following
+closure configurations:
+
+\begin{enumerate}
+
+\item the sector is generated by a monotonic rank-ordered
+hierarchy;
+
+\item the sector is the unresolved predecessor of a resolved
+hierarchy;
+
+\item the sector is a resolved element of a rank hierarchy;
+
+\item the sector is the saturated terminal state of a resolved
+hierarchy;
+
+\item the sector is neutral and decoupled from the charged
+confinement boundary.
+
+\end{enumerate}
+
+These configurations are mutually exclusive and collectively
+exhaustive for retained projections of the primitive closure
+kernel.
+
+\end{lemma}
+
+\begin{proof}
+
+The primitive closure kernel contains only the three primitive
+closure directions
+
+\begin{equation}
+\chi_M,
+\qquad
+\chi_A,
+\qquad
+\chi_B.
+\end{equation}
+
+Any retained sector generated by a projection of
+\mathcal K must be characterized by its relation to the
+activation hierarchy of the primitive closure directions.
+
+A retained sector may therefore:
+
+\begin{enumerate}
+\item precede the first resolved activation;
+\item belong to an active resolved hierarchy;
+\item terminate a resolved hierarchy;
+\item remain decoupled from the charged confinement boundary.
+\end{enumerate}
+
+These possibilities exhaust the logical relations that a
+retained projection may have to a closure hierarchy generated
+by the primitive kernel.
+
+A retained particle sector may therefore interact with the
+primitive closure structure in only three ways:
+
+\begin{enumerate}
+
+\item it may belong to a closure hierarchy generated by
+successive activation of primitive directions;
+
+\item it may lie below the first resolved activation of such a
+hierarchy;
+
+\item it may lie beyond the terminal resolved activation of such
+a hierarchy.
+
+\end{enumerate}
+
+The first possibility produces rank-ordered sectors.
+
+The second produces closure-deficit sectors.
+
+The third produces saturation sectors.
+
+If the sector does not couple to the charged confinement
+boundary, the rank hierarchy is absent and the sector is
+described by the neutral scalar closure projection.
+
+No additional retained closure configurations can arise because
+every projection of \(\mathcal K\) must either precede,
+participate in, terminate, or bypass a closure hierarchy.
+
+Therefore the listed configurations are collectively exhaustive.
+
+Since a retained sector cannot simultaneously be unresolved,
+resolved, saturated, and neutral-decoupled, the configurations
+are mutually exclusive.
+
+Hence every retained particle sector is classified by one of
+the listed closure configurations.
+
+\end{proof}
+
+%%%%%%%====================================================================
+
+\begin{theorem}[Projection Completeness]
+\label{thm:projection_completeness}
+
+Let
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4)
+\end{equation}
+
+be the primitive closure kernel.
+
+Then every retained projection of the primitive closure kernel
+belongs to exactly one of the following projection classes:
+
+\begin{enumerate}
+
+\item generation projection;
+
+\item closure-deficit projection;
+
+\item resolved rank-lattice projection;
+
+\item saturation projection;
+
+\item neutral scalar projection.
+
+\end{enumerate}
+
+Furthermore, these projection classes are mutually exclusive and
+collectively exhaustive for all retained particle sectors
+generated by the primitive closure kernel.
+
+\end{theorem}
+
+\begin{proof}
+
+By Lemma~\ref{lem:exhaustion_of_closure_configurations},
+every retained particle sector generated by the primitive
+closure kernel must belong to one of the following closure
+configurations:
+
+\begin{enumerate}
+
+\item a rank-ordered hierarchy;
+
+\item an unresolved predecessor of a hierarchy;
+
+\item a resolved element of a hierarchy;
+
+\item a saturated terminal state of a hierarchy;
+
+\item a neutral sector decoupled from the charged confinement
+boundary.
+
+\end{enumerate}
+
+The corresponding projections are respectively:
+
+\begin{enumerate}
+
+\item generation projection;
+
+\item closure-deficit projection;
+
+\item resolved rank-lattice projection;
+
+\item saturation projection;
+
+\item neutral scalar projection.
+
+\end{enumerate}
+
+Each retained particle sector is generated by exactly one of
+these closure configurations and therefore belongs to exactly
+one of the corresponding projection classes.
+
+Since the closure configurations are mutually exclusive and
+collectively exhaustive by
+Lemma~\ref{lem:exhaustion_of_closure_configurations},
+the associated projection classes are likewise mutually
+exclusive and collectively exhaustive.
+
+Therefore every retained projection of the primitive closure
+kernel belongs to exactly one of the listed projection classes.
+
+Therefore no additional retained projection class exists beyond
+generation, closure-deficit, resolved rank-lattice, saturation,
+and neutral scalar projection.
+
+\end{proof}
+
+%%%%%%%%%%================================================================
+
+\begin{theorem}[Completeness of the Retained Closure Mechanisms]
+\label{thm:closure_mechanism_completeness}
+
+Within the retained particle sectors considered in this work,
+the admissible closure mechanisms generated by the primitive
+kernel are exhausted by the following cases:
+
+\begin{enumerate}
+\item monotonic generation-chain projection for charged leptons;
+\item minimal closure-deficit construction for the light-quark
+sector;
+\item monotonic colour-area rank-lattice selection for the
+resolved heavy-quark sectors;
+\item saturated heavy-sector closure accumulation for the top
+sector;
+\item scalar neutral closure projection for the active neutrino
+sector.
+\end{enumerate}
+
+\end{theorem}
+
+\begin{proof}
+
+By Theorem~\ref{thm:projection_completeness}, every retained
+projection of the primitive closure kernel belongs to one of
+five projection classes:
+
+\begin{enumerate}
+\item generation projection;
+\item closure-deficit projection;
+\item resolved rank-lattice projection;
+\item saturation projection;
+\item neutral scalar projection.
+\end{enumerate}
+
+The charged-lepton sector realizes the generation projection.
+
+The light-quark sector realizes the closure-deficit projection.
+
+The strange, charm, and bottom sectors realize the resolved
+rank-lattice projection.
+
+The top sector realizes the saturation projection.
+
+The active neutrino sector realizes the neutral scalar
+projection.
+
+Therefore the retained closure mechanisms considered in this
+work are exhausted by the listed projection classes.
+
+\end{proof}
+
+\begin{theorem}[Global Uniqueness Within the Closure Framework]
+\label{thm:global_uniqueness_within_closure_framework}
+
+Given the primitive kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+and the closure-compatible mechanisms of
+Definition~\ref{def:closure_compatible_mechanism}, the retained
+sector exponent assignments are uniquely fixed within the
+closure framework.
+
+In particular,
+
+\begin{equation}
+e,\mu,\tau:
+\qquad
+n_\ell=0,1,3,
+\end{equation}
+
+\begin{equation}
+u:
+\qquad
+(\beta,\gamma)=(-1,-1),
+\end{equation}
+
+\begin{equation}
+d:
+\qquad
+(\alpha,\beta,\gamma)=(1,-1,-1),
+\end{equation}
+
+\begin{equation}
+s,c,b:
+\qquad
+(r_A,r_B)=(0,1),(1,2),(2,2),
+\end{equation}
+
+\begin{equation}
+t:
+\qquad
+\det{}'(\mathcal K_t)=3^8,
+\end{equation}
+
+and
+
+\begin{equation}
+\nu_1,\nu_2,\nu_3:
+\qquad
+\Lambda_{\nu_i}^{\rm eff}=0,4,24.
+\end{equation}
+
+\end{theorem}
+
+\begin{proof}
+
+The charged-lepton exponents are fixed by
+Theorem~\ref{thm:charged_lepton_generation_uniqueness}, which
+selects the unique monotonic generation assignment
+
+\begin{equation}
+n_e=0,
+\qquad
+n_\mu=1,
+\qquad
+n_\tau=3.
+\end{equation}
+
+The light-quark deficit exponents are fixed by
+Corollary~\ref{cor:light_quark_deficit}, which gives
+
+\begin{equation}
+\det{}'(\mathcal K_u)
+=
+\chi_A^{-1}\chi_B^{-1}.
+\end{equation}
+
+The down quark is obtained from the same closure-deficit sector
+by the minimal mass-partition lift \(\chi_M=2\), giving
+
+\begin{equation}
+\det{}'(\mathcal K_d)
+=
+\chi_M\chi_A^{-1}\chi_B^{-1}.
+\end{equation}
+
+The resolved heavy-quark exponents are fixed by
+Lemma~\ref{lem:heavy_quark_rank_lattice} together with
+Proposition~\ref{prop:monotonic_closure_growth}. These select
+the retained chain
+
+\begin{equation}
+(0,1)
+\longrightarrow
+(1,2)
+\longrightarrow
+(2,2).
+\end{equation}
+
+The top-sector exponent is fixed by
+Theorem~\ref{thm:top_quark_saturation_determinant}, which gives
+
+\begin{equation}
+\det{}'(\mathcal K_t)
+=
+3^8.
+\end{equation}
+
+Finally, the active neutral exponents are fixed by
+Theorem~\ref{thm:active_neutral_closure_selection}, giving
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff}
+=
+0,
+\qquad
+4,
+\qquad
+24.
+\end{equation}
+
+Thus, once the primitive kernel and admissible closure
+mechanisms are fixed, no alternative exponent assignment remains
+within the retained charged, quark, or active-neutral sectors.
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Predictions}
+\label{sec:predictions}
+
+The closure-determinant framework developed in the preceding
+sections leads to a number of observational and phenomenological
+predictions. These predictions arise directly from the
+confinement geometry, primitive closure kernel, neutral closure
+spectrum, and projected closure structure established
+throughout the present work.
+
+\subsection{Summary of Principal Predictions}
+\label{subsec:summary_predictions}
+
+The principal observational predictions of the present
+framework are summarized below.
+
+\begin{enumerate}
+
+\item \textbf{Normal Neutrino Hierarchy.}
+
+The neutral closure spectrum predicts
+
+\begin{equation}
+m_{\nu_1}
+<
+m_{\nu_2}
+<
+m_{\nu_3},
+\end{equation}
+
+with leading-order masses
+
+\begin{equation}
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV}.
+\end{equation}
+
+\item \textbf{Exactly Three Active Neutrinos.}
+
+The electroweak projection selects exactly three active neutral
+states,
+
+\begin{equation}
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\{\nu_1,\nu_2,\nu_3\}.
+\end{equation}
+
+\item \textbf{Hidden Neutral Closure Excitation.}
+
+The retained neutral closure spectrum predicts a hidden neutral
+closure excitation with mass
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\end{equation}
+
+\item \textbf{Higher Neutral Closure Tower.}
+
+The neutral closure hierarchy predicts additional neutral
+states generated by
+
+\begin{equation}
+\Lambda_{{\rm N},n+1}
+=
+4\,\Lambda_{{\rm N},n}.
+\end{equation}
+
+\item \textbf{Absence of a Fourth Charged Generation.}
+
+The charged-generation spectrum
+
+\begin{equation}
+\operatorname{spec}(L_3)
+=
+{0,1,3}
+\end{equation}
+
+contains exactly three retained charged generations.
+
+\item \textbf{Strange-Sector Transition Deviation.}
+
+The strange quark occupies the first retained resolved
+colour-area sector and is predicted to exhibit the largest
+fractional deviation from the leading-order closure determinant
+law among the retained resolved quark sectors.
+
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Neutrino Hierarchy}
+\label{subsec:prediction_neutrino_hierarchy}
+
+The neutral closure sequence
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24
+\end{equation}
+
+together with the vacuum--curvature normalization scale
+
+\begin{equation}
+E_{\rm vac}
+=
+2.25~{\rm meV}
+\end{equation}
+
+predicts the leading-order neutrino spectrum
+
+\begin{equation}
+m_{\nu_1}
+=
+0,
+\qquad
+m_{\nu_2}
+=
+9.0~{\rm meV},
+\qquad
+m_{\nu_3}
+=
+54.0~{\rm meV}.
+\end{equation}
+
+The corresponding neutrino mass sum is
+
+\begin{equation}
+\Sigma m_\nu
+=
+0.063~{\rm eV}.
+\end{equation}
+
+This value lies below current cosmological upper bounds and is
+consistent with a normal neutrino hierarchy
+\cite{Planck2018,PDG2024}.
+
+The framework therefore predicts a normal neutrino mass ordering.
+
+The predicted oscillation observables are
+
+\begin{equation}
+\Delta m_{21}^{2}
+=
+8.10\times10^{-5}
+~{\rm eV}^{2},
+\qquad
+\Delta m_{31}^{2}
+=
+2.916\times10^{-3}
+~{\rm eV}^{2},
+\end{equation}
+
+providing a direct observational consistency test of the
+neutral-closure spectrum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Three Active Neutrinos}
+\label{subsec:prediction_three_active_neutrinos}
+
+The neutral closure space decomposes according to
+
+\begin{equation}
+\mathcal H_{\rm neutral}
+=
+\mathcal H_{\rm active}
+\oplus
+\mathcal H_{\rm hidden}.
+\end{equation}
+
+The electroweak projection operator selects exactly three
+electroweak-active neutral states,
+
+\begin{equation}
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\{\nu_1,\nu_2,\nu_3\}.
+\end{equation}
+
+The framework therefore predicts exactly three active neutrinos,
+consistent with present experimental observations
+\cite{PDG2024}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Hidden Neutral Closure Sector}
+\label{subsec:prediction_hidden_sector}
+
+The framework predicts the existence of a hidden neutral
+closure sector,
+
+\begin{equation}
+\mathcal H_{\rm hidden},
+\end{equation}
+
+containing neutral closure excitations that do not couple
+directly to the electroweak sector.
+
+The lowest hidden neutral closure excitation is predicted to
+have mass
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\end{equation}
+
+The state $X$ is not interpreted as a fourth active neutrino,
+but as an electroweak-singlet closure excitation.
+
+The hidden neutral excitation predicted in the preceding
+subsections is not introduced as an independent particle-sector
+assumption.
+
+Rather, it emerges automatically from the retained neutral
+closure spectrum once the active electroweak states have been
+identified and removed from the neutral closure tower.
+
+The derivation depends only upon
+
+\begin{enumerate}
+\item the primitive closure kernel,
+\item the neutral closure projection,
+\item the vacuum--curvature normalization scale, and
+\item the retained neutral closure eigenvalue sequence.
+\end{enumerate}
+
+Consequently, the state is not inserted phenomenologically in
+order to reproduce an observed mass. Its mass follows directly
+from the closure-spectrum construction.
+
+Within the present framework, the hidden excitation is therefore
+interpreted as a retained neutral closure state predicted by the
+geometry of the closure spectrum.
+
+At present, the closure framework does not require the hidden
+neutral excitation to coincide with any known Standard Model
+particle. Its status is that of a retained neutral closure
+excitation emerging from the closure spectrum itself.
+
+The physical existence of this state is contingent upon the
+validity of the neutral closure hierarchy developed in the
+present work. Experimental non-observation would therefore
+provide a direct test of the hidden-sector closure
+interpretation.
+
+The state is therefore a prediction of the closure spectrum
+rather than an independent assumption, while leaving its
+physical identification and experimental status to future
+observation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Dark-Sector Candidate}
+\label{subsec:prediction_dark_sector}
+
+If the state $X$ is electrically neutral, colour neutral, and
+weakly coupled, it provides a natural dark-sector candidate.
+The framework therefore predicts the possible existence of a
+neutral hidden sector associated with the closure spectrum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Higher Neutral Closure Tower}
+\label{subsec:prediction_neutral_tower}
+
+The neutral closure construction predicts a hierarchy of higher
+neutral excitations governed by
+
+\begin{equation}
+m
+=
+E_{\rm vac}\Lambda.
+\end{equation}
+
+Beyond the active neutrino sector, the next predicted neutral
+closure states occur at
+
+\begin{align}
+54~{\rm meV},
+\qquad
+216~{\rm meV},
+\qquad
+864~{\rm meV},
+\qquad
+3.456~{\rm eV}.
+\end{align}
+
+These states correspond to the closure eigenvalues
+
+\begin{equation}
+24,
+\qquad
+96,
+\qquad
+384,
+\qquad
+1536,
+\end{equation}
+
+and provide a direct observational test of the neutral closure
+spectrum.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Absence of a Fourth Charged Generation}
+\label{subsec:prediction_no_fourth_generation}
+
+The charged-generation structure is determined by
+
+\begin{equation}
+\operatorname{spec}(L_3)
+=
+\{0,1,3\}.
+\end{equation}
+
+Consequently, the framework contains exactly three retained
+charged generations and predicts the absence of a fourth
+charged-lepton generation and a fourth charged-quark generation.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Strange-Sector Transition Prediction}
+\label{subsec:prediction_strange_transition}
+
+The strange quark occupies the first retained resolved
+colour-area sector of the quark closure hierarchy,
+
+\begin{equation}
+(r_A,r_B)=(0,1),
+\end{equation}
+
+which marks the transition between the closure-deficit regime
+and the resolved heavy-quark hierarchy.
+
+As discussed in
+Section~\ref{subsec:strange_quark_transition_sector},
+the strange sector lies closest to the boundary separating
+unresolved and resolved closure states. It is therefore
+expected to be the most sensitive retained quark sector to
+higher-order closure corrections not included in the
+leading-order determinant construction.
+
+The framework predicts that the strange sector should exhibit
+the largest fractional deviation from the leading-order closure
+determinant relation among the retained resolved quark sectors.
+
+Consequently, higher-order closure corrections should first
+manifest in the strange sector before producing observable
+effects in the charm, bottom, or top sectors.
+
+Observation that the charm, bottom, or top sectors exhibit
+larger fractional deviations from the leading-order closure
+determinant relation than the strange sector would constitute
+evidence against the closure-transition interpretation proposed
+here.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Experimental Tests and Falsifiability}
+\label{sec:experimental_tests}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A physical theory must be testable against observation.
+The purpose of the present section is to compare the principal
+predictions of the SFT particle-mass framework with current
+experimental data and to identify predictions that may be
+tested by future measurements.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Test 1: Charged-Lepton Spectrum}
+
+The charged-lepton masses derived from the closure determinant
+construction may be compared directly with the experimentally
+measured values reported by the Particle Data Group
+\cite{PDG2024}.
+
+\begin{table}[H]
+\centering
+\caption{Charged-lepton masses.}
+\begin{tabular}{lccc}
+\toprule
+Particle &
+SFT Mass &
+Experimental Mass &
+Difference \\
+\midrule
+Electron &
+0.505 MeV &
+0.510999 MeV &
+$-1.2\%$ \\
+Muon &
+109.2 MeV &
+105.658 MeV &
+$+3.4\%$ \\
+Tau &
+1747 MeV &
+1776.86 MeV &
+$-1.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The charged-lepton sector therefore reproduces the observed
+mass hierarchy and the correct mass scales using only the
+primitive closure invariants and the universal surface
+normalization scale.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Test 2: Quark Spectrum}
+
+The quark-sector masses derived in the preceding sections may
+likewise be compared with current PDG reference values
+\cite{PDG2024}.
+
+\begin{table}[H]
+\centering
+\caption{Comparison of SFT quark masses with experiment.}
+\begin{tabular}{lccc}
+\toprule
+Quark &
+SFT Mass &
+Experimental Mass &
+Difference \\
+\midrule
+Up &
+2.27 MeV &
+2.16 MeV &
++5.1\% \\
+Down &
+4.55 MeV &
+4.67 MeV &
+-2.6\% \\
+Strange &
+109.2 MeV &
+93 MeV &
++17.4\% \\
+Charm &
+1.31 GeV &
+1.27 GeV &
++3.1\% \\
+Bottom &
+3.93 GeV &
+4.18 GeV &
+-6.0\% \\
+Top &
+179 GeV &
+172.76 GeV &
++3.6\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The quark spectrum provides an independent test of the closure
+determinant framework because the masses arise from distinct
+closure sectors while using the same primitive geometric data.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Test 3: Neutrino Mass Spectrum}
+
+The neutral closure sector predicts the active neutrino masses
+
+\begin{equation}
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV}.
+\end{equation}
+
+The corresponding neutrino mass sum is
+
+\begin{equation}
+\Sigma m_\nu
+=
+m_{\nu_1}
++
+m_{\nu_2}
++
+m_{\nu_3}
+=
+0.063~{\rm eV}.
+\end{equation}
+
+This value lies below current cosmological upper bounds and is
+consistent with a normal neutrino hierarchy
+\cite{PDG2024,Planck2018}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\subsection{Test 4: Neutrino Oscillation Scales}
+
+Neutrino oscillation experiments measure mass-squared
+differences rather than absolute masses.
+
+For the predicted normal hierarchy
+
+\begin{equation}
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV},
+\end{equation}
+
+the oscillation observables are
+
+\begin{equation}
+\Delta m_{21}^{2}
+=
+m_{\nu_2}^{2}
+-
+m_{\nu_1}^{2},
+\end{equation}
+
+and
+
+\begin{equation}
+\Delta m_{31}^{2}
+=
+m_{\nu_3}^{2}
+-
+m_{\nu_1}^{2}.
+\end{equation}
+
+Substituting the predicted masses gives
+
+\begin{equation}
+\Delta m_{21}^{2}
+=
+(9.0\times10^{-3}\,{\rm eV})^{2}
+-
+0
+=
+8.10\times10^{-5}\,{\rm eV}^{2},
+\end{equation}
+
+and
+
+\begin{equation}
+\Delta m_{31}^{2}
+=
+(54.0\times10^{-3}\,{\rm eV})^{2}
+-
+0
+=
+2.916\times10^{-3}\,{\rm eV}^{2}.
+\end{equation}
+
+The latest NuFIT global analysis for normal ordering gives\cite{NuFIT2024,NuFITWeb}
+
+
+\begin{equation}
+\Delta m_{21,\rm exp}^{2}
+=
+7.50\times10^{-5}
+~{\rm eV}^{2},
+\end{equation}
+
+and
+
+\begin{equation}
+\Delta m_{31,\rm exp}^{2}
+=
+2.529\times10^{-3}
+~{\rm eV}^{2}.
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Neutrino oscillation observables.}
+\begin{tabular}{lccc}
+\toprule
+Observable &
+SFT Prediction &
+Global Fit (NuFIT 6.1) &
+Difference \\
+\midrule
+$\Delta m_{21}^{2}$ &
+$8.10\times10^{-5}$ &
+$7.50\times10^{-5}$ &
+$8.0\%$ \\
+$\Delta m_{31}^{2}$ &
+$2.916\times10^{-3}$ &
+$2.529\times10^{-3}$ &
+$15.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The framework reproduces the correct normal mass ordering and
+predicts oscillation mass-squared splittings that agree with
+current global-fit values to within approximately \(8\%\) for
+the solar scale and \(15\%\) for the atmospheric scale.
+
+Because the SFT neutrino spectrum is derived directly from the
+neutral closure sequence
+
+\begin{equation}
+0,
+\qquad
+4,
+\qquad
+24,
+\end{equation}
+
+and the vacuum-curvature normalization scale
+
+\begin{equation}
+E_{\rm vac}
+=
+2.25~{\rm meV},
+\end{equation}
+
+these oscillation predictions are obtained without introducing
+neutrino-specific fitting parameters.
+
+The observed agreement therefore provides a non-trivial
+consistency test of the neutral-closure construction.
+
+%%%%%%%============================================================
+
+\subsection{Test 5: Hidden Neutral Closure State}
+
+The neutral closure construction predicts the existence of a
+hidden neutral sector beyond the three electroweak-active
+neutrinos.
+
+The lowest hidden neutral closure excitation is predicted to
+have mass
+
+\begin{equation}
+m_X
+\simeq
+5.24~{\rm GeV}.
+\end{equation}
+
+This state is not interpreted as a fourth active neutrino.
+Instead, it belongs to the hidden neutral closure sector and
+satisfies
+
+\begin{equation}
+\mathbf P_{\rm EW}X=0.
+\end{equation}
+
+Consequently, the state does not contribute to the observed
+electroweak neutral-current width.
+
+If electrically neutral, colour neutral, and sufficiently
+weakly coupled, the state provides a potential dark-sector
+candidate.
+
+At present no established Standard Model particle is known at
+this mass scale with the properties predicted here.
+Experimental observation of a neutral state near
+
+\[
+5.24~{\rm GeV}
+\]
+
+with suppressed electroweak couplings would provide a direct
+test of the hidden-neutral-sector prediction of the SFT
+framework.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Test 6: Higher Neutral Closure Tower}
+
+The strongest new prediction of the present work is the
+existence of a higher neutral closure tower.
+
+From Proposition~\ref{prop:higher_neutral_tower},
+
+\begin{equation}
+\Lambda_{{\rm N},n}
+=
+24\times4^{\,n-2},
+\qquad
+n\geq2.
+\end{equation}
+
+The first predicted neutral closure states are therefore
+
+\begin{equation}
+24,
+\qquad
+96,
+\qquad
+384,
+\qquad
+1536,
+\qquad
+\ldots
+\end{equation}
+
+These states do not correspond to any currently established
+particle spectrum and therefore constitute a genuine prediction
+of the SFT framework.
+
+Observation of neutral-sector states exhibiting this closure
+scaling pattern would provide a direct test of the spectral
+closure construction.
+
+%%%%%%================================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Prediction 7: Neutral-Tower Mass Spectrum}
+\label{subsec:prediction_neutral_tower_masses}
+
+The higher neutral closure tower predicts not only a sequence of
+closure eigenvalues but also a corresponding hierarchy of
+physical masses.
+
+Using the neutral-sector mass map
+
+\begin{equation}
+m_N
+=
+E_{\rm vac}\,
+\Lambda_N,
+\label{eq:neutral_tower_mass_map}
+\end{equation}
+
+together with the vacuum--curvature normalization scale
+
+\begin{equation}
+E_{\rm vac}
+=
+2.25~{\rm meV},
+\end{equation}
+
+the higher neutral closure eigenvalues
+
+\begin{equation}
+24,
+\qquad
+96,
+\qquad
+384,
+\qquad
+1536,
+\qquad
+\ldots
+\end{equation}
+
+generate the mass sequence
+
+\begin{equation}
+54~{\rm meV},
+\qquad
+216~{\rm meV},
+\qquad
+864~{\rm meV},
+\qquad
+3.456~{\rm eV},
+\qquad
+\ldots
+\end{equation}
+
+Explicitly,
+
+\begin{equation}
+m_{N,2}
+=
+(2.25~{\rm meV})(24)
+=
+54~{\rm meV},
+\end{equation}
+
+\begin{equation}
+m_{N,3}
+=
+(2.25~{\rm meV})(96)
+=
+216~{\rm meV},
+\end{equation}
+
+\begin{equation}
+m_{N,4}
+=
+(2.25~{\rm meV})(384)
+=
+864~{\rm meV},
+\end{equation}
+
+and
+
+\begin{equation}
+m_{N,5}
+=
+(2.25~{\rm meV})(1536)
+=
+3.456~{\rm eV}.
+\end{equation}
+
+\begin{table}[H]
+\centering
+\caption{Predicted higher neutral closure spectrum.}
+\begin{tabular}{ccc}
+\toprule
+Level &
+Closure Eigenvalue &
+Predicted Mass \\
+\midrule
+$N_2$ & $24$ & $54~{\rm meV}$ \\
+$N_3$ & $96$ & $216~{\rm meV}$ \\
+$N_4$ & $384$ & $864~{\rm meV}$ \\
+$N_5$ & $1536$ & $3.456~{\rm eV}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The resulting mass hierarchy constitutes a genuine prediction of
+the SFT framework. Observation of neutral-sector states
+following this geometric scaling sequence would provide a direct
+test of the higher neutral closure construction.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Falsifiability}
+
+The present framework may be falsified through any of the
+following observations:
+
+\begin{enumerate}
+
+\item Observation of a fourth charged-lepton generation or a
+fourth charged-quark generation.
+
+Such an observation would contradict the charged-generation
+spectrum
+
+\[
+\operatorname{spec}(L_3)
+=
+\{0,1,3\},
+\]
+
+which contains exactly three retained charged generations.
+
+\item Observation of more than three electroweak-active
+neutrinos.
+
+Such an observation would contradict the active-neutral closure
+projection
+
+\[
+\mathcal H_{\rm active}
+=
+\operatorname{span}
+\{\nu_1,\nu_2,\nu_3\}.
+\]
+
+\item Experimental determination of a neutrino hierarchy
+incompatible with the predicted normal ordering.
+
+\item Precise measurements of neutrino masses demonstrating a
+mass sum significantly inconsistent with
+
+\[
+\Sigma m_\nu
+=
+0.063~{\rm eV}
+\]
+
+and incompatible with plausible higher-order closure
+corrections.
+
+\item Experimental determination of a lightest neutrino mass
+comparable to or larger than the solar neutrino scale,
+
+\[
+m_{\nu_1}
+\sim
+m_{\nu_2},
+\]
+
+would contradict the neutral-ground-state interpretation of the
+lightest neutrino as a strongly suppressed closure state.
+
+\item Future oscillation measurements demonstrating that the
+predicted mass-squared splittings cannot be reconciled with the
+neutral closure construction.
+
+\item Failure of the charged-lepton and quark sectors to remain
+consistent under improved precision determinations.
+
+\item Failure to observe evidence for the predicted hidden
+neutral closure excitation near
+
+\[
+m_X \simeq 5.24~{\rm GeV}
+\]
+
+in experimental regimes possessing sufficient sensitivity to
+the couplings implied by the closure framework would place
+strong constraints on the retained hidden-sector
+interpretation.
+
+\item Experimental exclusion of the first retained higher
+neutral closure excitations predicted by the neutral closure
+tower, together with the absence of the recursive structure
+
+\[
+\Lambda_{{\rm N},n+1}
+=
+4\Lambda_{{\rm N},n},
+\]
+
+or the corresponding mass sequence generated by the
+closure--vacuum mass map, would contradict the higher-neutral
+closure construction.
+
+\item Observation that higher-order quark-mass corrections are
+dominated by the charm, bottom, or top sectors rather than by
+the strange sector.
+
+Such a result would contradict the closure-transition
+interpretation of the strange quark as the first retained
+resolved colour-area sector.
+
+\end{enumerate}
+
+Consequently, the framework is observationally testable and
+admits multiple independent avenues for falsification spanning
+the charged-lepton, quark, neutrino, hidden-neutral, and
+higher-neutral sectors.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Geometric Interpretation of Particle Mass}
+\label{subsec:geometric_interpretation_mass}
+
+Within the Spacefield Transformation framework, particle mass is
+interpreted as a measure of retained closure content carried by
+a physical Spacefield excitation.
+
+The Spectral Closure Determinant Mass Theorem established
+earlier in this work,
+
+\begin{equation}
+m_i
+=
+M_{\rm sector}
+\det{}'(\mathcal K_i),
+\end{equation}
+
+shows that a particle mass is determined by two geometric
+ingredients:
+
+\begin{enumerate}
+
+\item the normalization scale \(M_{\rm sector}\), which fixes
+the physical mass dimension of the sector;
+
+\item the reduced closure determinant
+\(\det{}'(\mathcal K_i)\), which measures the retained closure
+structure of the corresponding projected eigenspace.
+
+\end{enumerate}
+
+Larger determinants correspond to closure sectors containing a
+greater amount of retained geometric structure and therefore
+carry larger masses.
+
+Consequently, particle masses are not introduced through
+independent Yukawa parameters. Instead, they emerge from the
+closure geometry of the underlying Spacefield.
+
+Charged leptons and quarks correspond to confinement-boundary
+closure sectors normalized by the universal surface mass scale
+\(M_{\rm surf}\), whereas neutrinos correspond to neutral
+vacuum-closure sectors normalized by the vacuum-curvature scale
+\(E_{\rm vac}\).
+
+The observed particle mass hierarchy is therefore interpreted as
+a hierarchy of retained closure structure within the finite
+Spacefield geometry.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this work we developed a geometric closure framework for the
+particle mass spectrum within the Spacefield Transformation
+(SFT) program.
+
+The construction begins with the primitive confinement
+invariants
+
+\begin{equation}
+\chi_M = 2,
+\qquad
+\chi_A = 3,
+\qquad
+\chi_B = 4,
+\end{equation}
+
+which arise from the mass-partition and projected-area
+structures of the Universal Confinement Zone.
+
+From these primitive invariants we constructed the primitive
+closure kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+which serves as the fundamental spectral object of the
+framework.
+
+The particle sectors are obtained through closure-compatible
+projections of this kernel. The resulting spectral determinants
+generate particle masses through the spectral closure
+determinant mass theorem without the introduction of
+particle-specific mass parameters.
+
+For the charged-lepton sector, the framework produces the
+generation sequence
+
+\begin{equation}
+n_\ell
+=
+\{0,1,3\},
+\end{equation}
+
+yielding leading-order masses that reproduce the observed
+electron, muon, and tau mass hierarchy.
+
+For the quark sector, the framework derives both the
+closure-deficit light-quark states and the resolved heavy-quark
+hierarchy from the primitive closure geometry. The strange,
+charm, and bottom sectors emerge from the unique admissible
+colour-area rank lattice, while the top quark is identified
+with the saturated heavy-sector closure state associated with
+the cumulative heavy-quark closure load.
+
+For the neutral sector, the active neutrino sequence
+
+\begin{equation}
+\Lambda_{\nu_i}^{\rm eff}
+=
+\{0,4,24\}
+\end{equation}
+
+generates a normal neutrino hierarchy with leading-order mass
+estimates
+
+\begin{equation}
+m_{\nu_1}=0,
+\qquad
+m_{\nu_2}=9.0~{\rm meV},
+\qquad
+m_{\nu_3}=54.0~{\rm meV}
+\end{equation}
+
+The framework additionally predicts a retained hidden neutral
+closure sector containing electroweak-singlet closure
+excitations, together with a hierarchy of higher neutral
+closure states. The physical existence of these states remains
+contingent upon the validity of the neutral closure spectrum
+derived in the present work.
+
+A central result of the paper is that the retained charged,
+quark, and active-neutral sectors are generated from a common
+primitive kernel and are selected through closure-compatible
+mechanisms rather than independent numerical assignments. The
+resulting mass spectrum therefore arises from geometric closure
+structure rather than phenomenological parameter fitting.
+
+The framework leads to a number of falsifiable predictions,
+including the existence of exactly three active neutrinos, the
+absence of a fourth charged generation, the existence of a
+hidden neutral closure sector, and the presence of higher
+neutral closure excitations governed by the closure spectrum.
+
+A further result established in this work is that the retained
+sector assignments are uniquely determined within the closure
+framework. The primitive kernel is independent of the detailed
+microscopic realization of the closure-compatible operator, and
+the admissible particle sectors exhaust the retained closure
+projections generated by the kernel. Consequently, the resulting sector exponents are not introduced
+phenomenologically but are uniquely selected by the closure
+structure itself.
+
+A central objective of the present work was not merely to
+reproduce known particle masses, but to derive them from a
+finite set of geometric closure invariants without introducing
+particle-specific mass parameters. Within the retained sectors
+considered here, all mass scales arise from closure-compatible
+projections of the primitive kernel
+
+\begin{equation}
+\mathcal K
+=
+\operatorname{diag}(2,3,4),
+\end{equation}
+
+providing a unified geometric origin for the charged-lepton,
+quark, and active-neutral mass spectra.
+
+Taken together, the results presented here suggest that a
+finite set of primitive geometric closure invariants may be
+sufficient to generate a broad range of particle-sector
+observables from a common spectral structure. The resulting
+mass spectrum arises from geometric closure relations rather
+than phenomenological parameter fitting and provides a
+falsifiable framework whose predictions may be tested through
+neutrino measurements, searches for hidden neutral closure
+excitations, and future probes of particle mass structure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+\appendix
+
+\section{Appendix: Summary Tables of Derived Spectra and Predictions}
+\label{app:summary_tables}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Primitive Geometric Data}
+
+\begin{table}[H]
+\centering
+\caption{Primitive geometric quantities of the SFT closure framework.}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+$\chi_M$ & $2$ \\
+$\chi_A$ & $3$ \\
+$\chi_B$ & $4$ \\
+$M_{\rm surf}$ & $27.29~{\rm MeV}$ \\
+$E_{\rm vac}$ & $2.25~{\rm meV}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Charged-Lepton Spectrum}
+
+\begin{table}[H]
+\centering
+\caption{Charged-lepton masses.}
+\begin{tabular}{lccc}
+\toprule
+Particle & SFT Mass & Experimental Mass & Difference \\
+\midrule
+Electron & $0.505~{\rm MeV}$ & $0.510999~{\rm MeV}$ & $-1.2\%$ \\
+Muon & $109.2~{\rm MeV}$ & $105.658~{\rm MeV}$ & $+3.4\%$ \\
+Tau & $1747~{\rm MeV}$ & $1776.86~{\rm MeV}$ & $-1.7\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Quark Spectrum}
+
+\begin{table}[H]
+\centering
+\caption{Quark masses.}
+\begin{tabular}{lccc}
+\toprule
+Quark & SFT Mass & Experimental Mass & Difference \\
+\midrule
+Up & $2.27~{\rm MeV}$ & $2.16~{\rm MeV}$ & $+5.1\%$ \\
+Down & $4.55~{\rm MeV}$ & $4.67~{\rm MeV}$ & $-2.6\%$ \\
+Strange & $109.2~{\rm MeV}$ & $93~{\rm MeV}$ & $+17.4\%$ \\
+Charm & $1.31~{\rm GeV}$ & $1.27~{\rm GeV}$ & $+3.1\%$ \\
+Bottom & $3.93~{\rm GeV}$ & $4.18~{\rm GeV}$ & $-6.0\%$ \\
+Top & $179~{\rm GeV}$ & $172.76~{\rm GeV}$ & $+3.6\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Neutrino Spectrum}
+
+\begin{table}[H]
+\centering
+\caption{Predicted neutrino masses.}
+\begin{tabular}{lc}
+\toprule
+State & Mass \\
+\midrule
+$\nu_1$ & $0$ \\
+$\nu_2$ & $9.0~{\rm meV}$ \\
+$\nu_3$ & $54.0~{\rm meV}$ \\
+\midrule
+$\Sigma m_\nu$ & $0.063~{\rm eV}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neutrino Oscillation Comparison}
+
+\begin{table}[H]
+\centering
+\caption{Comparison of SFT oscillation observables with current global-fit values for normal ordering \cite{NuFIT2024,NuFITWeb}.}
+\begin{tabular}{lccc}
+\toprule
+Observable & SFT Prediction & Global Fit & \% Difference \\
+\midrule
+$\Delta m_{21}^{2}$ &
+$8.10\times10^{-5}$ &
+$7.50\times10^{-5}$ &
+$8.0\%$ \\
+
+$\Delta m_{31}^{2}$ &
+$2.916\times10^{-3}$ &
+$2.529\times10^{-3}$ &
+$15.4\%$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The oscillation observables are obtained directly from the
+predicted neutrino masses
+$m_{\nu_1}=0$,
+$m_{\nu_2}=9.0~{\rm meV}$,
+and
+$m_{\nu_3}=54.0~{\rm meV}$,
+without introducing oscillation-specific fitting parameters.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Hidden Neutral Sector Prediction}
+
+\begin{table}[H]
+\centering
+\caption{Predicted hidden neutral closure state.}
+\begin{tabular}{lc}
+\toprule
+Quantity & Value \\
+\midrule
+Predicted state & $X$ \\
+Mass & $5.24~{\rm GeV}$ \\
+Status & Not yet observed \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Neutral Closure Tower}
+
+\begin{table}[H]
+\centering
+\caption{Predicted neutral closure hierarchy.}
+\begin{tabular}{ccc}
+\toprule
+Level & Closure Eigenvalue & Mass \\
+\midrule
+$N_0$ & $0$ & $0$ \\
+$N_1$ & $4$ & $9~{\rm meV}$ \\
+$N_2$ & $24$ & $54~{\rm meV}$ \\
+$N_3$ & $96$ & $216~{\rm meV}$ \\
+$N_4$ & $384$ & $864~{\rm meV}$ \\
+$N_5$ & $1536$ & $3.456~{\rm eV}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+%%%%%%%%%%%REFERENCES %%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{unsrt}
+\bibliography{references}
+
+\end{document}
