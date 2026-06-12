@@ -1,17 +1,8 @@
 cff-version: 1.2.0
-message: "If you use this repository, please cite it as below."
+message: "If you use this repository, please cite it."
 title: "Spacefield Transformation IV: Particle Masses from Primitive Closure Invariants"
-type: software
-
 authors:
-
-* family-names: Egbon
-  given-names: Joshua
-
+  - family-names: "Egbon"
+    given-names: "Joshua"
 version: "1.0.1"
-
 doi: "10.5281/zenodo.20664031"
-
-repository-code: "https://github.com/joshuaegbon7-sketch/sft-paper4-particle-masses"
-
-license: MIT
